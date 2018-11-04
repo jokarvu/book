@@ -1,0 +1,46 @@
+@import "spec/settings/index";
+@import "spec/tools/index";
+@import "~bootstrap/scss/bootstrap";
+@import "spec/index";
+@import "vendor/index";
+@import "~toastr/toastr";
+// @import '~datatables/media/css/jquery.dataTables");
+
+.paginate_button {
+    cursor: default;
+}
+table td:last-child {
+    width: 13%!important;
+}
+.bill {
+    * {
+        font-family: Helvetica, sans-serif;
+    }
+}
+
+// Datatables Sorting Button
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+  cursor: pointer;
+  *cursor: hand;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+table.dataTable thead .sorting {
+  background-image: url("static/images/datatables/sort_both.png");
+}
+table.dataTable thead .sorting_asc {
+  background-image: url("static/images/datatables/sort_asc.png");
+}
+table.dataTable thead .sorting_desc {
+  background-image: url("static/images/datatables/sort_desc.png");
+}
+table.dataTable thead .sorting_asc_disabled {
+  background-image: url("static/images/datatables/sort_asc_disabled.png");
+}
+table.dataTable thead .sorting_desc_disabled {
+  background-image: url("static/images/datatables/sort_desc_disabled.png");
+}

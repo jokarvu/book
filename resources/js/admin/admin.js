@@ -1,13 +1,27 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+import VueRouter from 'vue-router'
+import router from './router'
+import VeeValidate from 'vee-validate'
 require('./bootstrap');
 
 window.Vue = require('vue');
+Vue.use(VueRouter)
+var VeeConfig = {
+    strict: false
+}
+Vue.use(VeeValidate, VeeConfig);
+
+import AppHeader from './components/layouts/partials/header';
+import AppFooter from './components/layouts/partials/footer';
+import AppSidebar from './components/layouts/partials/sidebar';
+Vue.component('app-header', AppHeader);
+Vue.component('app-footer', AppFooter);
+Vue.component('app-sidebar', AppSidebar);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,7 +31,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -32,5 +46,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router: router
 });

@@ -22,3 +22,14 @@ Route::resource('import', 'ImportController');
 Route::resource('invoice', 'InvoiceController');
 Route::resource('role', 'RoleController');
 Route::resource('supplier', 'SupplierController');
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::get('admin', 'AuthController@isAdmin');
+    Route::get('check', 'AuthController@check');
+    Route::get('current', 'AuthController@current');
+});
+
+Route::get('/admin/{vue?}', function () {
+    return view('admin');
+})->where('vue', '[\/\.\w\-]+');
