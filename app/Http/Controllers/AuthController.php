@@ -11,7 +11,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $data = $request->only('email', 'password');
-        if(Auth::attempt([$data])) {
+        // return $data;
+        if(Auth::attempt($data)) {
             return Response::json(['message' => 'Đăng nhập thành công!'], 200);
         }
         return Response::json(['message' => 'Email hoặc mật khẩu không đúng!'], 401);
@@ -39,5 +40,14 @@ class AuthController extends Controller
             return Auth::user();
         }
         return Response::json('false', 403);
+    }
+
+    public function logout()
+    {
+        if(Auth::user()) {
+            Auth::logout();
+            return Response::json(['message' => 'Đã đăng xuất'], 200);
+        }
+        return Response::json(['message' => 'Bạn chưa đăng nhập'], 403);
     }
 }

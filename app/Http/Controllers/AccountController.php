@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use App\User;
+use Auth;
+use App\Role;
+use App\Http\Requests\StoreUserRequest;
 
 class AccountController extends Controller
 {
@@ -13,7 +18,13 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user() && Auth::user()->isAdmin()) {
+            $users = User::with('role:id,name')->withTrashed()->get();
+            return Response::json($users, 200);
+        } elseif (Auth::guest()) {
+            return Response::json(['messaage' => 'Bạn chưa đăng nhập'], 403);
+        }   
+        return Response::json(Auth::user(), 200);
     }
 
     /**
@@ -23,7 +34,11 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->isAdmin()) {
+            $roles = Role::all();
+            return Response::json($roles, 200);
+        }
+        return Response::json(['message' => 'Page Not Found'], 404);
     }
 
     /**
@@ -32,9 +47,19 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        if(Auth::guest() || Auth::user()->can('create', User::class)) {
+            $data = $request->all();
+            $data['password'] = bcrypt($data['password']);
+            try {
+                User::create($data);
+                return Response::json(['message' => 'Đăng ký người dùng thành công'], 200);
+            } catch(Exception $errors) {
+                return Response::json(['message' => 'Không thể tạo người dùng. Vui lòng thử lại sau'], 500);
+            }
+        }
+        return Response::json(['message' => 'Bạn không có quyền tạo mới người dùng'], 403);
     }
 
     /**
@@ -43,9 +68,13 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $user = User::whereSlug($id)->get();
+        if (Auth::user()->can('view', $user)) {
+            return Response($user, 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền xem người dùng này'], 403);
     }
 
     /**
@@ -54,9 +83,13 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $user = User::whereSlug($slug)->get();
+        if(Auth::user()->can('update', $user)) {
+            return Response::json($user, 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền sửa người dùng này'], 403);
     }
 
     /**
@@ -66,9 +99,15 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $slug)
     {
-        //
+        $user = User::whereSlug($slug)->get();
+        if(Auth::user()->can('update', $user)) {
+            $data = $request->all();
+            $user->save($data);
+            return Response::json(['message' => 'Cập nhật người dùng thành công'], 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền sửa người dùng này'], 403);
     }
 
     /**
@@ -79,6 +118,11 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if (Auth::user()->can('delete', $user)) {
+            $user->delete();
+            return Response::json(['message' => 'Xóa người dùng thành công!'], 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền xóa người dùng'], 403);
     }
 }

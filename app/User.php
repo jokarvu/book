@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -29,6 +29,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function role()
     {
         return $this->belongsTo('App\Role');
@@ -37,5 +39,13 @@ class User extends Authenticatable
     public function invoices()
     {
         return $this->hasMany('App\Invoice');
+    }
+
+    public function isAdmin()
+    {
+        if($this->role->slug == 'admin') {
+            return true;
+        }
+        return false;
     }
 }

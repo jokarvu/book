@@ -39,28 +39,26 @@
 </template>
 <script type="text/javascript">
     export default {
-        data: function() {
-                return {
-                    role: null,
-                    user: {
-                    email: "",
-                    password: "",
+        data () {
+            return {
+                user: {
+                    email: '',
+                    password: '',
                     remember: 0
                 }
-            };
+            }
         },
         methods: {
-            login: function() {
+            login: function () {
                 var app = this;
-                Auth.login(app.user).then(() => {
-                    Auth.role().then(json => {
-                        var cpath = json.data;
-                        app.$router.push("/" + cpath);
-                    });
-                }).catch(error => {
-                    toastr.error("Login Failed!");
-                });
+                axios.post('/auth/login', app.user).then(response => {
+                    axios.get('/auth/admin').then(response => {
+                        app.$router.push("/admin");
+                    }).catch(errors => {
+                        app.$router.push("/");
+                    })
+                })
             }
         }
-    };
+    }
 </script>

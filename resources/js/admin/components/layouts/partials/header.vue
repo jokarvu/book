@@ -151,7 +151,7 @@
                             <img class="w-2r bdrs-50p" src="/images/logo.png" alt="">
                         </div>
                         <div class="peer">
-                            <span class="fsz-sm c-grey-900">Admin</span>
+                            <span class="fsz-sm c-grey-900">{{user.username}}</span>
                         </div>
                     </a>
                     <ul class="dropdown-menu fsz-sm">
@@ -187,5 +187,18 @@
     </div>
 </template>
 <script type="text/javascript">
-   
+   export default {
+       data () {
+           return {
+               user: null
+           }
+       },
+       mounted () {
+           axios.get('/auth/current').then(response => {
+               this.user = response.data;
+           }).catch(errors => {
+               ErrorHelper.error(errors);
+           })
+       }
+   }
 </script>

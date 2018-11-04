@@ -7,11 +7,21 @@ import Login from './components/login'
 
 // Pages
 import Dashboard from './components/pages/dashboard'
+// User
+import UserIndex from './components/pages/user/index'
+import UserCreate from './components/pages/user/create'
 
 const routes = [
     {
         path: '/login',
         component: Login,
+        beforeEnter: (to, from, next) => {
+            return axios.get('/auth/check').then(response => {
+                return next({path: '/'});
+            }).catch(errors => {
+                return next()
+            })
+        }
     },
     {
         path: '/admin',
@@ -22,7 +32,9 @@ const routes = [
             admin: true
         }, 
         children: [
-            {path: 'dashboard', component: Dashboard}
+            {path: 'dashboard', component: Dashboard},
+            {path: 'user', component: UserIndex},
+            {path: 'user/create', component: UserCreate},
         ]
     },
     // Not Found Page
@@ -33,6 +45,28 @@ const router = new VueRouter({
     routes: routes,
     mode: 'history',
     linkExactActiveClass: 'active'
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(m => m.meta.auth)) {
+        return axios.get('/auth/check').then(authenticated => {
+            if(authenticated.data != 'true') {
+                return next({path: '/login'})
+            }
+            if(to.matched.some(m => m.meta.admin)) {
+                return axios.get('/auth/admin').then(role => {
+                    if(role.data == 'true') {
+                        return next();
+                    }
+                    return next({path: '/NotFoundPage'})
+                })
+            }
+            return next();
+        }).catch(errors => {
+            return next({path: '/login'})
+        })
+    }
+    return next()
 });
 
 export default router

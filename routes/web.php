@@ -28,8 +28,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('admin', 'AuthController@isAdmin');
     Route::get('check', 'AuthController@check');
     Route::get('current', 'AuthController@current');
+    Route::get('logout', 'AuthController@logout');
 });
 
-Route::get('/admin/{vue?}', function () {
+Route::get('/{vue?}', function () {
     return view('admin');
 })->where('vue', '[\/\.\w\-]+');
