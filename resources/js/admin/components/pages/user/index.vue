@@ -37,7 +37,8 @@
                                 <td class="text-center">{{user.created_at}}</td>
                                 <td class="text-center">{{user.updated_at}}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'AdminProductEdit', params: {id: user.id}}" class="btn btn-sm btn-info">Sửa</router-link>
+                                    <router-link :to="{name: 'UserShow', params: {slug: user.username}}" class="btn btn-sm btn-success">Xem</router-link>
+                                    <router-link :to="{name: 'UserUpdate', params: {slug: user.username}}" class="btn btn-sm btn-info">Sửa</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#usermodal-'+user.id">
                                         Xóa
                                     </button>

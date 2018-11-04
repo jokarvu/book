@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use App\Role;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class AccountController extends Controller
 {
@@ -70,7 +71,7 @@ class AccountController extends Controller
      */
     public function show($slug)
     {
-        $user = User::whereSlug($id)->get();
+        $user = User::withTrashed()->where('username', $slug)->with('role:id,name')->first();
         if (Auth::user()->can('view', $user)) {
             return Response($user, 200);
         }
@@ -85,8 +86,12 @@ class AccountController extends Controller
      */
     public function edit($slug)
     {
-        $user = User::whereSlug($slug)->get();
+        $user = User::withTrashed()->where('username', $slug)->firstOrFail();
         if(Auth::user()->can('update', $user)) {
+            if(Auth::user()->isAdmin()) {
+                $roles = Role::all();
+                return Response::json(compact(['roles', 'user']), 200);
+            }
             return Response::json($user, 200);
         }
         return Response::json(['message' => 'Bạn không có quyền sửa người dùng này'], 403);
@@ -99,12 +104,14 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, $slug)
+    public function update(UpdateUserRequest $request, $slug)
     {
-        $user = User::whereSlug($slug)->get();
+        $user = User::withTrashed()->where('username', $slug)->firstOrFail();
         if(Auth::user()->can('update', $user)) {
-            $data = $request->all();
-            $user->save($data);
+            $user->username = $request->username;
+            $user->address = $request->address;
+            $user->email = $request->email;
+            $user->save();
             return Response::json(['message' => 'Cập nhật người dùng thành công'], 200);
         }
         return Response::json(['message' => 'Bạn không có quyền sửa người dùng này'], 403);

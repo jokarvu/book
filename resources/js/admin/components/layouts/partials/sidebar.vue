@@ -13,7 +13,7 @@
                                     </div>
                                 </div>
                                 <div class="peer peer-greed">
-                                    <h5 class="lh-1 mB-0 logo-text">November</h5>
+                                    <h5 class="lh-1 mB-0 logo-text">Nhóm 3</h5>
                                 </div>
                             </div>
                         </a>
@@ -43,7 +43,7 @@
                         <span class="icon-holder">
                           <i class="c-pink-500 ti-calendar"></i>
                         </span>
-                        <span class="title">Posts</span>
+                        <span class="title">Books</span>
                     </router-link>
                 </li>
                 <li class="nav-item">

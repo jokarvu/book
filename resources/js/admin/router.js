@@ -10,6 +10,8 @@ import Dashboard from './components/pages/dashboard'
 // User
 import UserIndex from './components/pages/user/index'
 import UserCreate from './components/pages/user/create'
+import UserUpdate from './components/pages/user/edit'
+import UserShow from './components/pages/user/show'
 
 const routes = [
     {
@@ -35,6 +37,8 @@ const routes = [
             {path: 'dashboard', component: Dashboard},
             {path: 'user', component: UserIndex},
             {path: 'user/create', component: UserCreate},
+            {path: 'user/:slug/edit', component: UserUpdate, name: 'UserUpdate'},
+            {path: 'user/:slug', component: UserShow, name: 'UserShow'},
         ]
     },
     // Not Found Page
@@ -44,7 +48,8 @@ const routes = [
 const router = new VueRouter({
     routes: routes,
     mode: 'history',
-    linkExactActiveClass: 'active'
+    linkExactActiveClass: 'active',
+    linkActiveClass: 'active',
 });
 
 router.beforeEach((to, from, next) => {
