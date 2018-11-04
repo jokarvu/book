@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->text('description');
             $table->integer('quantity')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ class CreateImportsTable extends Migration
             $table->integer('supplier_id')->unsigned();
             $table->text('note');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

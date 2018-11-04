@@ -21,6 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('shipping_tax')->unsigned();
             $table->text('note');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
