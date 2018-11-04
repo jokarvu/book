@@ -16711,6 +16711,10 @@ var app = new Vue({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_pages_user_edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_pages_user_edit__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_pages_user_show__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_pages_user_show___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_pages_user_show__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_pages_book_index__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_pages_book_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_pages_book_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_pages_book_create__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_pages_book_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_pages_book_create__);
 
 
 // Layouts
@@ -16723,6 +16727,9 @@ var app = new Vue({
 // User
 
 
+
+
+// Book
 
 
 
@@ -16744,7 +16751,11 @@ var routes = [{
         auth: true,
         admin: true
     },
-    children: [{ path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard___default.a }, { path: 'user', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_user_index___default.a }, { path: 'user/create', component: __WEBPACK_IMPORTED_MODULE_6__components_pages_user_create___default.a }, { path: 'user/:slug/edit', component: __WEBPACK_IMPORTED_MODULE_7__components_pages_user_edit___default.a, name: 'UserUpdate' }, { path: 'user/:slug', component: __WEBPACK_IMPORTED_MODULE_8__components_pages_user_show___default.a, name: 'UserShow' }]
+    children: [{ path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard___default.a },
+    // User pages
+    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_user_index___default.a }, { path: 'user/create', component: __WEBPACK_IMPORTED_MODULE_6__components_pages_user_create___default.a }, { path: 'user/:slug/edit', component: __WEBPACK_IMPORTED_MODULE_7__components_pages_user_edit___default.a, name: 'UserUpdate' }, { path: 'user/:slug', component: __WEBPACK_IMPORTED_MODULE_8__components_pages_user_show___default.a, name: 'UserShow' },
+    // Book pages
+    { path: 'book', component: __WEBPACK_IMPORTED_MODULE_9__components_pages_book_index___default.a }, { path: 'book/create', component: __WEBPACK_IMPORTED_MODULE_10__components_pages_book_create___default.a }]
 },
 // Not Found Page
 { path: '*', component: __WEBPACK_IMPORTED_MODULE_2__components_NotFoundPage___default.a }];
@@ -81021,7 +81032,7 @@ var render = function() {
           [
             _c(
               "router-link",
-              { staticClass: "sidebar-link", attrs: { to: "/admin/post" } },
+              { staticClass: "sidebar-link", attrs: { to: "/admin/book" } },
               [
                 _c("span", { staticClass: "icon-holder" }, [
                   _c("i", { staticClass: "c-pink-500 ti-calendar" })
@@ -82070,6 +82081,1107 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2dd621fb", module.exports)
+  }
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(80)
+/* template */
+var __vue_template__ = __webpack_require__(81)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/admin/components/pages/book/index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e3e6b43c", Component.options)
+  } else {
+    hotAPI.reload("data-v-e3e6b43c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            books: []
+            // table: null
+        };
+    },
+    mounted: function mounted() {
+        var app = this;
+        // Get product data
+        axios.get("/book").then(function (json) {
+            app.books = json.data;
+        }).catch(function (json) {
+            ErrorHelper.error(errors);
+        });
+    },
+    updated: function updated() {
+        var app = this;
+        app.table = $("#book-index").DataTable({
+            stateSave: true
+        });
+    },
+
+    methods: {
+        DeleteBook: function DeleteBook(id) {
+            var app = this;
+            axios.delete('/book/' + id).then(function (response) {
+                toastr.success(response.data.message);
+                app.table.rows('#book-' + id).remove().draw(false);
+            }).catch(function (errors) {
+                ErrorHelper.error(errors);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "bgc-white bd bdrs-3 p-20 mB-20" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-6" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-info float-right",
+                    attrs: { to: "/admin/book/create" }
+                  },
+                  [_vm._v("Add New Book")]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped table-bordered",
+              attrs: { id: "book-index", cellspacing: "0", width: "100%" }
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.books, function(book) {
+                  return _c(
+                    "tr",
+                    { key: book.id, attrs: { id: "book-" + book.id } },
+                    [
+                      _c(
+                        "th",
+                        { staticClass: "text-center", attrs: { scope: "row" } },
+                        [_vm._v(_vm._s(book.id))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(book.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(book.author))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(book.category.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(book.price))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(book.quantity))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "badge badge-pill c-white",
+                            class: book.deleted_at
+                              ? "bgc-red-700"
+                              : "bgc-green-400"
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(book.deleted_at ? "Deleted" : "Available")
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-sm btn-success",
+                              attrs: {
+                                to: {
+                                  name: "UserShow",
+                                  params: { slug: book.slug }
+                                }
+                              }
+                            },
+                            [_vm._v("Xem")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-sm btn-info",
+                              attrs: {
+                                to: {
+                                  name: "UserUpdate",
+                                  params: { slug: book.slug }
+                                }
+                              }
+                            },
+                            [_vm._v("Sửa")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "modal",
+                                "data-target": "#bookmodal-" + book.id
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    Xóa\n                                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "modal fade",
+                              attrs: {
+                                id: "bookmodal-" + book.id,
+                                tabindex: "-1",
+                                role: "dialog",
+                                "aria-labelledby": "exampleModalLabel",
+                                "aria-hidden": "true"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "modal-dialog",
+                                  attrs: { role: "document" }
+                                },
+                                [
+                                  _c("div", { staticClass: "modal-content" }, [
+                                    _vm._m(2, true),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-body" }, [
+                                      _vm._v(
+                                        "\n                                                Tất cả hóa đơn về sách cũng sẽ được chuyển vào thùng rác. Bạn có muốn tiếp tục không?\n                                            "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-footer" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-danger",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "modal"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.DeleteBook(book.id)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Xóa")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-info",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "modal"
+                                          }
+                                        },
+                                        [_vm._v("Hủy")]
+                                      )
+                                    ])
+                                  ])
+                                ]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                })
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("h4", { staticClass: "c-grey-900 mB-20" }, [_vm._v("All Users")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#ID")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Author")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Xóa sách")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e3e6b43c", module.exports)
+  }
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(83)
+/* template */
+var __vue_template__ = __webpack_require__(84)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/admin/components/pages/book/create.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5b3c611c", Component.options)
+  } else {
+    hotAPI.reload("data-v-5b3c611c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            book: {
+                name: '',
+                author: '',
+                description: '',
+                category_id: '',
+                quantity: 0,
+                price: 0,
+                thumbnail: null
+            },
+            categories: []
+        };
+    },
+    mounted: function mounted() {
+        var app = this;
+        axios.get('/book/create').then(function (json) {
+            app.categories = json.data;
+        }).catch(function (errors) {
+            // console.log(json);
+            toastr.error(errors.message);
+        });
+    },
+
+    methods: {
+        AddNewBook: function AddNewBook() {
+            // Tao lan dau tien neu dien du form khong hoat dong? Need fix
+            var app = this;
+            var form = new FormData();
+            for (var key in app.book) {
+                form.append(key, app.book[key]);
+            }
+            app.$validator.validateAll().then(function (result) {
+                if (!result) {
+                    // validation failed
+                    toastr.error('Có lỗi xảy ra');
+                } else {
+                    axios.post('/book', form).then(function (json) {
+                        toastr.success(json.data.message);
+                        app.$router.push({ path: '/admin/book' });
+                    }).catch(function (errors) {
+                        ErrorHelper.error(errors);
+                    });
+                }
+            }).catch(function () {
+                toastr.error('Có lôi xảy ra!');
+            });
+        },
+        thumbnail: function thumbnail(e) {
+            var app = this;
+            var file = e.target.files || e.dataTansfer.files;
+            app.book.thumbnail = file[0];
+        }
+    }
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row gap-20" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "bgc-white p-20 bd" }, [
+          _c("h4", { staticClass: "c-grey-900 mB-20" }, [
+            _vm._v("Add New Book")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mT-30" }, [
+            _c(
+              "form",
+              {
+                staticClass: "container",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.AddNewBook($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Name ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.book.name,
+                          expression: "book.name"
+                        },
+                        { name: "validate", rawName: "v-validate" }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.has("name") },
+                      attrs: {
+                        "data-vv-rules": "required",
+                        name: "name",
+                        type: "text"
+                      },
+                      domProps: { value: _vm.book.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.book, "name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("name"),
+                            expression: "errors.has('name')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("name")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Price")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.book.price,
+                          expression: "book.price"
+                        },
+                        { name: "validate", rawName: "v-validate" }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.has("price") },
+                      attrs: {
+                        "data-vv-rules": "required|numeric",
+                        name: "price",
+                        type: "text"
+                      },
+                      domProps: { value: _vm.book.price },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.book, "price", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("price"),
+                            expression: "errors.has('price')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("price")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Author")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.book.author,
+                          expression: "book.author"
+                        },
+                        { name: "validate", rawName: "v-validate" }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.has("author") },
+                      attrs: {
+                        "data-vv-rules": "required",
+                        name: "author",
+                        type: "text"
+                      },
+                      domProps: { value: _vm.book.author },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.book, "author", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("author"),
+                            expression: "errors.has('author')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("author")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Thumbnail")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [{ name: "validate", rawName: "v-validate" }],
+                      staticClass: "form-control-file",
+                      class: { "is-invalid": _vm.errors.has("thumbnail") },
+                      attrs: {
+                        "data-vv-rules": "required",
+                        name: "thumbnail",
+                        type: "file"
+                      },
+                      on: { change: _vm.thumbnail }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("thumbnail"),
+                            expression: "errors.has('thumbnail')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("thumbnail")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Category")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.book.category_id,
+                            expression: "book.category_id"
+                          },
+                          { name: "validate", rawName: "v-validate" }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.errors.has("category_id") },
+                        attrs: {
+                          "data-vv-rules": "required",
+                          name: "category_id"
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.book,
+                              "category_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "", disabled: "" } }, [
+                          _vm._v("Choose...")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.categories, function(category) {
+                          return _c(
+                            "option",
+                            {
+                              key: category.id,
+                              domProps: { value: category.id }
+                            },
+                            [_vm._v(_vm._s(category.name))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("category_id"),
+                            expression: "errors.has('category_id')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("category_id")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                    _c("label", [_vm._v("Quantity ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.book.quantity,
+                          expression: "book.quantity"
+                        },
+                        { name: "validate", rawName: "v-validate" }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.has("quantity") },
+                      attrs: {
+                        "data-vv-rules": "required|numeric",
+                        name: "quantity",
+                        type: "numeric"
+                      },
+                      domProps: { value: _vm.book.quantity },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.book, "quantity", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("quantity"),
+                            expression: "errors.has('quantity')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("quantity")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12 mb-3" }, [
+                    _c("label", [_vm._v("Description (Optional) ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.book.description,
+                          expression: "book.description"
+                        },
+                        { name: "validate", rawName: "v-validate" }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.has("description") },
+                      attrs: {
+                        "data-vv-rules": "",
+                        name: "description",
+                        type: "text"
+                      },
+                      domProps: { value: _vm.book.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.book, "description", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("description"),
+                            expression: "errors.has('description')"
+                          }
+                        ],
+                        staticClass: "form-control-feedback text-danger"
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(_vm.errors.first("description")) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "d-flex flex-row-reverse clearfix" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-danger mL-5",
+                        attrs: { to: "/admin/user" }
+                      },
+                      [_vm._v("Cancel")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Add New Book")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5b3c611c", module.exports)
   }
 }
 

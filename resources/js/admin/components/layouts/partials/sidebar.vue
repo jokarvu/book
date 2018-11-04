@@ -39,7 +39,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/admin/post" class='sidebar-link'>
+                    <router-link to="/admin/book" class='sidebar-link'>
                         <span class="icon-holder">
                           <i class="c-pink-500 ti-calendar"></i>
                         </span>

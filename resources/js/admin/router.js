@@ -12,6 +12,10 @@ import UserIndex from './components/pages/user/index'
 import UserCreate from './components/pages/user/create'
 import UserUpdate from './components/pages/user/edit'
 import UserShow from './components/pages/user/show'
+// Book
+import BookIndex from './components/pages/book/index'
+import BookCreate from './components/pages/book/create'
+
 
 const routes = [
     {
@@ -35,10 +39,14 @@ const routes = [
         }, 
         children: [
             {path: 'dashboard', component: Dashboard},
+            // User pages
             {path: 'user', component: UserIndex},
             {path: 'user/create', component: UserCreate},
             {path: 'user/:slug/edit', component: UserUpdate, name: 'UserUpdate'},
             {path: 'user/:slug', component: UserShow, name: 'UserShow'},
+            // Book pages
+            {path: 'book', component: BookIndex},
+            {path: 'book/create', component: BookCreate},
         ]
     },
     // Not Found Page
