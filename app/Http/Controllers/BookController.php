@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\StoreBookRequest;
 use Auth;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -52,8 +53,7 @@ class BookController extends Controller
         if(Auth::user()->can('create', Book::class)) {
             $data = $request->except('thumbnail');
             try {
-                $data['slug'] = str_slug($data['name']);
-                $thumbnail = $data['slug'].'.jpg';
+                $thumbnail = str_slug($data['name']).'.jpg';
                 $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');
                 Book::create($data);
                 return Response::json(['message' => 'Thêm sách thành công!'], 200);
@@ -72,7 +72,7 @@ class BookController extends Controller
      */
     public function show($slug)
     {
-        $book = Book::where('slug', $slug)->get();
+        $book = Book::withTrashed()->where('slug', $slug)->with('category:id,name')->withCount('invoices')->firstOrFail();
         if ($book) {
             return Response::json($book, 200);
         }
@@ -88,8 +88,9 @@ class BookController extends Controller
     public function edit($slug)
     {
         $book = Book::withTrashed()->where('slug', $slug)->firstOrFail();
+        $categories = Category::all();
         if(Auth::user()->can('update', $book)) {
-            return Response::json($book, 200);
+            return Response::json(compact(['categories', 'book']), 200);
         }
         return Response::json(['message' => 'Bạn không có quyền sửa sách'], 403);
     }
@@ -101,12 +102,15 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(UpdateBookRequest $request, $slug)
     {
         $book = Book::withTrashed()->where('slug', $slug)->firstOrFail();
         if(Auth::user()->can('update', $book)) {
+            $data = $request->input('name');
+            return $data;
             try {
-                $data = $request->all();
+                $thumbnail = str_slug($data['name']).'.jpg';
+                $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');
                 Book::withTrashed()->where('slug', $slug)->update($data);
                 return Response::json(['message' => 'Cập nhật sách thành công!'], 200);
             } catch(Exception $errors) {

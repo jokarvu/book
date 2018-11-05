@@ -15,6 +15,8 @@ import UserShow from './components/pages/user/show'
 // Book
 import BookIndex from './components/pages/book/index'
 import BookCreate from './components/pages/book/create'
+import BookShow from './components/pages/book/show'
+import BookUpdate from './components/pages/book/edit'
 
 
 const routes = [
@@ -42,11 +44,13 @@ const routes = [
             // User pages
             {path: 'user', component: UserIndex},
             {path: 'user/create', component: UserCreate},
-            {path: 'user/:slug/edit', component: UserUpdate, name: 'UserUpdate'},
             {path: 'user/:slug', component: UserShow, name: 'UserShow'},
+            {path: 'user/:slug/edit', component: UserUpdate, name: 'UserUpdate'},
             // Book pages
             {path: 'book', component: BookIndex},
             {path: 'book/create', component: BookCreate},
+            {path: 'book/:slug', component: BookShow, name: 'BookShow'},
+            {path: 'book/:slug/edit', component: BookUpdate, name: 'BookUpdate'},
         ]
     },
     // Not Found Page

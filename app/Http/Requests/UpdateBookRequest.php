@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookRequest extends FormRequest
+class UpdateBookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,14 +31,14 @@ class StoreBookRequest extends FormRequest
             'quantity' => 'required|numeric'
         ];
     }
-
+    
     public function messages()
     {
         return [
             'category_id.required' => 'Bạn phải chọn danh mục',
             'category_id.numeric' => 'Danh mục không hợp lệ!',
             'category_id.exists' => 'Danh mục không tồn tại',
-            'name.reuqired' => 'Bạn phải nhập tên sách',
+            'name.required' => 'Bạn phải nhập tên sách',
             'author.required' => 'Bạn phải nhập tên tác giả',
             'price.required' => 'Bạn phải nhập giá tiền của sách',
             'price.numeric' => 'Giá tiền phải là số',

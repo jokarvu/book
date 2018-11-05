@@ -26,4 +26,20 @@ class Book extends Model
     {
         return $this->belongsToMany('App\Import');
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function getAuthorAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['slug'] = str_slug($value);
+        $this->attributes['name'] = ucwords($value);
+    }
 }

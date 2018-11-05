@@ -52,6 +52,7 @@
             login: function () {
                 var app = this;
                 axios.post('/auth/login', app.user).then(response => {
+                    toastr.success(response.data.message);
                     axios.get('/auth/admin').then(response => {
                         app.$router.push("/admin");
                     }).catch(errors => {

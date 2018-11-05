@@ -37,8 +37,8 @@
                                     <span class="badge badge-pill c-white" :class="book.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{book.deleted_at ? 'Deleted' : 'Available'}}</span>
                                 </td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'UserShow', params: {slug: book.slug}}" class="btn btn-sm btn-success">Xem</router-link>
-                                    <router-link :to="{name: 'UserUpdate', params: {slug: book.slug}}" class="btn btn-sm btn-info">Sửa</router-link>
+                                    <router-link :to="{name: 'BookShow', params: {slug: book.slug}}" class="btn btn-sm btn-success">Xem</router-link>
+                                    <router-link :to="{name: 'BookUpdate', params: {slug: book.slug}}" class="btn btn-sm btn-info">Sửa</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#bookmodal-'+book.id">
                                         Xóa
                                     </button>
