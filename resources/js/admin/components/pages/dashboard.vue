@@ -7,7 +7,7 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Total Users</h6>
+                            <h6 class="lh-1">Invoices</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -15,7 +15,7 @@
                                     <span id="sparkline1" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ total_users }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ counter.total_invoices }}</span>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +26,7 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Total Posts</h6>
+                            <h6 class="lh-1">Total Books</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -34,7 +34,7 @@
                                     <span id="sparkline2" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">{{ total_posts }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">{{ counter.total_books }}</span>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Pending Posts</h6>
+                            <h6 class="lh-1">Books Available</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -53,7 +53,7 @@
                                     <span id="sparkline3" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ total_pending_posts }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ counter.book_left }}</span>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                 <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Today Posts</h6>
+                            <h6 class="lh-1">Users</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -72,7 +72,7 @@
                                     <span id="sparkline4" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">{{ today_posts }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">{{ counter.total_users }}</span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                 <div class="col-md-3">
                     <div class="layers bd bgc-white p-20">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Today Users</h6>
+                            <h6 class="lh-1">Pending Invoices</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -91,14 +91,14 @@
                                     <span id="sparkline5" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ today_users }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ counter.pending_invoices }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="layers bd bgc-white p-20 mT-10">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Total Views</h6>
+                            <h6 class="lh-1">Success Invoices</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -106,14 +106,14 @@
                                     <span id="sparkline6" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ total_views }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ counter.success_invoices }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="layers bd bgc-white p-20 mT-10">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Categories</h6>
+                            <h6 class="lh-1">Today Invoices</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -121,14 +121,14 @@
                                     <span id="sparkline7" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ total_categories }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ counter.today_invoices }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="layers bd bgc-white p-20 mT-10">
                         <div class="layer w-100 mB-10">
-                            <h6 class="lh-1">Tags</h6>
+                            <h6 class="lh-1">Imports</h6>
                         </div>
                         <div class="layer w-100">
                             <div class="peers ai-sb fxw-nw">
@@ -136,7 +136,7 @@
                                     <span id="sparkline8" class="sparkline"></span>
                                 </div>
                                 <div class="peer">
-                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ total_tags }}</span>
+                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ counter.total_imports }}</span>
                                 </div>
                             </div>
                         </div>
@@ -179,15 +179,18 @@
     export default {
         data () {
             return {
-                total_users: 0,
-                today_users: 0,
-                total_posts: 0,
-                today_posts: 0,
-                total_pending_posts: 0,
-                total_categories: 0,
-                total_views: 0,
-                total_tags: 0,
-                popular_posts: null
+                counter: {
+                    total_users: 0,
+                    total_books: 0,
+                    book_left: 0,
+                    active_user: 0,
+                    pending_invoices: 0,
+                    success_invoices: 0,
+                    total_categories: 0,
+                    today_invoices: 0,
+                    total_imports: 0,
+                    total_invoices: 0,
+                }
             }
         },
         mounted () {
@@ -204,19 +207,11 @@
             $('#sparkline8').sparkline(value, {type: 'bar', barColor: 'yellow'});
 
             // Counter
-            // axios.get('/api/admin/dashboard').then(json => {
-            //     app.total_users = json.data.total_users;
-            //     app.today_users = json.data.today_users;
-            //     app.total_posts = json.data.total_posts;
-            //     app.today_posts = json.data.today_posts;
-            //     app.total_pending_posts = json.data.total_pending_posts;
-            //     app.total_categories = json.data.total_categories;
-            //     app.total_views = json.data.total_views;
-            //     app.total_tags = json.data.total_tags;
-            //     app.popular_posts = json.data.popular_posts;
-            // }).catch(json => {
-            //     toastr.error('Could not load data!');
-            // });
+            axios.get('/dashboard').then(json => {
+                app.counter = json.data;
+            }).catch(errors => {
+                ErrorHelper.error(errors);
+            });
         },
         // updated () {
         //     var app = this;

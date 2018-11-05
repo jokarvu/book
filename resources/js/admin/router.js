@@ -17,6 +17,10 @@ import BookIndex from './components/pages/book/index'
 import BookCreate from './components/pages/book/create'
 import BookShow from './components/pages/book/show'
 import BookUpdate from './components/pages/book/edit'
+// Category
+import CategoryIndex from './components/pages/category/index'
+import CategoryCreate from './components/pages/category/create'
+import CategoryShow from './components/pages/category/show'
 
 
 const routes = [
@@ -51,6 +55,10 @@ const routes = [
             {path: 'book/create', component: BookCreate},
             {path: 'book/:slug', component: BookShow, name: 'BookShow'},
             {path: 'book/:slug/edit', component: BookUpdate, name: 'BookUpdate'},
+            // Category pages
+            {path: 'category', component: CategoryIndex},
+            {path: 'category/create', component: CategoryCreate},
+            {path: 'category/:slug', component: CategoryShow, name: 'CategoryShow'},
         ]
     },
     // Not Found Page

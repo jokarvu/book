@@ -55,19 +55,19 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/admin/comment" class='sidebar-link'>
+                    <router-link to="/admin/invoice" class='sidebar-link'>
                         <span class="icon-holder">
                           <i class="c-orange-500 ti-comment-alt"></i>
                         </span>
-                        <span class="title">Comments</span>
+                        <span class="title">Invoices</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/admin/tag" class='sidebar-link'>
+                    <router-link to="/admin/import" class='sidebar-link'>
                         <span class="icon-holder">
                           <i class="c-indigo-500 ti-tag"></i>
                         </span>
-                        <span class="title">Tags</span>
+                        <span class="title">Imports</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
