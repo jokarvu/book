@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import App from './components/layouts/app'
 import NotFoundPage from './components/NotFoundPage'
 import Login from './components/login'
+import Render from './components/render'
 
 // Pages
 import Dashboard from './components/pages/dashboard'
@@ -21,7 +22,7 @@ import BookUpdate from './components/pages/book/edit'
 import CategoryIndex from './components/pages/category/index'
 import CategoryCreate from './components/pages/category/create'
 import CategoryShow from './components/pages/category/show'
-
+import CategoryUpdate from './components/pages/category/edit'
 
 const routes = [
     {
@@ -59,9 +60,11 @@ const routes = [
             {path: 'category', component: CategoryIndex},
             {path: 'category/create', component: CategoryCreate},
             {path: 'category/:slug', component: CategoryShow, name: 'CategoryShow'},
+            {path: 'category/:slug/edit', component: CategoryUpdate, name: 'CategoryUpdate'},
         ]
     },
     // Not Found Page
+    {path: '/render', component: Render},
     {path: '*', component: NotFoundPage},
 ]
 

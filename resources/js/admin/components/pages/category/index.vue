@@ -37,7 +37,8 @@
                                 </td>
                                 <td class="text-center">{{category.updated_at}}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-info">Show</router-link>
+                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-success">Show</router-link>
+                                    <router-link :to="{name: 'CategoryUpdate', params: {slug: category.slug}}" class="btn btn-sm btn-info">Edit</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#category-modal-'+category.id">
                                         Delete
                                     </button>

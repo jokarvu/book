@@ -37,7 +37,8 @@
                                 </td>
                                 <td class="text-center">{{category.updated_at}}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-info">Show</router-link>
+                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-success">Show</router-link>
+                                    <router-link :to="{name: 'CategoryUpdate', params: {slug: category.slug}}" class="btn btn-sm btn-info">Edit</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#category-modal-'+category.id">
                                         Delete
                                     </button>
@@ -77,7 +78,7 @@
                             <router-link to="/admin/book/create" class="btn btn-info float-right">Add New Book</router-link>
                         </div>
                     </div>
-                    <table :id="'table-posts-'+$route.params.slug" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <table :id="'table-category-'+$route.params.slug" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
@@ -167,14 +168,14 @@
             var app = this;
             var slug = app.$route.params.slug;
             app.table = $('#table-'+slug).DataTable({})
-            app.table2 = $('#table-posts-'+slug).DataTable({})
+            app.table2 = $('#table-category-'+slug).DataTable({})
         },
         watch: {
             '$route' (to, from) {
                 var self = this;
                 $.fn.dataTable.ext.errMode = 'none';
                 // console.log('OK');
-                self.$router.push({path: '/admin/rerender'});
+                self.$router.push({path: '/render'});
             }
         },
         methods : {

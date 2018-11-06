@@ -9,7 +9,7 @@ class Book extends Model
 {
     use SoftDeletes;
     
-    protected $fillable = ['name', 'author', 'price', 'quantity', 'description', 'category_id', 'slug'];
+    protected $fillable = ['name', 'author', 'price', 'quantity', 'quantity_left', 'description', 'category_id', 'slug'];
     protected $dates = ['deleted_at'];
 
     public function category()
