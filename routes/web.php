@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::resource('user', 'AccountController');
 Route::resource('dashboard', 'AdminDashboardController');
 Route::resource('book', 'BookController');

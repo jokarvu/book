@@ -15,6 +15,6 @@ class Invoice extends Model
 
     public function books()
     {
-        return $this->hasMany('App\Book');
+        return $this->belongsToMany('App\Book');
     } 
 }

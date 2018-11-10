@@ -23,6 +23,9 @@ import CategoryIndex from './components/pages/category/index'
 import CategoryCreate from './components/pages/category/create'
 import CategoryShow from './components/pages/category/show'
 import CategoryUpdate from './components/pages/category/edit'
+// Invoice
+import InvoiceIndex from './components/pages/invoice/index'
+import InvoiceShow from './components/pages/invoice/show'
 
 const routes = [
     {
@@ -61,6 +64,9 @@ const routes = [
             {path: 'category/create', component: CategoryCreate},
             {path: 'category/:slug', component: CategoryShow, name: 'CategoryShow'},
             {path: 'category/:slug/edit', component: CategoryUpdate, name: 'CategoryUpdate'},
+            // Invoice pages
+            {path: 'invoice', component: InvoiceIndex},
+            {path: 'invoice/:id', component: InvoiceShow, name: 'InvoiceShow'},
         ]
     },
     // Not Found Page

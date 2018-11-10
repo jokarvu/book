@@ -21,9 +21,9 @@ class AdminDashboardController extends Controller
             $book_left = Book::all()->sum('quantity_left');
             $total_users = User::withTrashed()->count();
             $active_users = User::count();
-            $total_invoices = Invoice::count();
-            $pending_invoices = Invoice::where('status_id', 1)->count();
-            $success_invoices = Invoice::where('status_id', 4)->count();
+            $total_invoices = Invoice::withTrashed()->count();
+            $pending_invoices = Invoice::withTrashed()->where('status_id', 1)->count();
+            $success_invoices = Invoice::withTrashed()->where('status_id', 4)->count();
             $total_imports = Import::withTrashed()->count();
             $total_categories = Category::count();
             $today_invoices = Invoice::whereDate('created_at', Carbon::today())->count();
