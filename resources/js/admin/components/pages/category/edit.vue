@@ -58,7 +58,7 @@
                 categories: [],
                 category: {
                     name: null,
-                    category_id: '',
+                    category_id: 0,
                     description: '',
                 }
             }

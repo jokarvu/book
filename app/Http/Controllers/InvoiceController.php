@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Response;
 use App\Invoice;
 use Auth;
 use App\Book;
+use App\User;
+use App\Http\Requests\StoreInvoiceRequest;
 
 class InvoiceController extends Controller
 {
@@ -34,7 +36,12 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return Response::json(['message' => "Page Not Found"], 404);
+        if (Auth::user() && Auth::user()->can('create', Invoice::class)) {
+            $users = User::select('username', 'id', 'address')->get();
+            $books = Book::select('name', 'id', 'quantity', 'slug', 'price')->get();
+            return Response::json(compact(['users', 'books']), 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền tạo đơn hàng'], 403);
     }
 
     /**
@@ -43,21 +50,36 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInvoiceRequest $request)
     {
         if (Auth::user() && Auth::user()->can('create', Invoice::class)) {
             $data = $request->all();
+            if (isset($data['user_id'])) {
+                if ($data['user_id'] == null) {
+                    return Response::json(['message' => 'Bạn phải chọn một người dùng'], 422);
+                }
+                $user = User::find($data['user_id']);
+                $books = $data['carts'];
+            } else {
+                $user = Auth::user();
+                $books = $data;
+            }
+            //
+            if(count($books) == 0) {
+                return Response::json(['message' => 'Bạn phải chọn ít nhất một đầu sách'], 422);
+            }
+
             // Kiểm tra xem trong kho còn đủ số lượng sách không
-            foreach ($data as $key => $item) {
+            foreach ($books as $key => $item) {
                 $book = Book::find($item['id']);
                 if ($book->quantity_left < $item['quantity']) {
                     return Response::json(['message' => 'Trong kho không đủ số lượng'], 422);
                 }
             }
             // Tạo đơn hàng
-            $invoice = Invoice::create(['user_id' => Auth::user()->id, 'address' => Auth::user()->address, 'status_id' => 1, 'shipping_tax' => 0.1]);
+            $invoice = Invoice::create(['user_id' => $user->id, 'address' => $user->address, 'status_id' => 1, 'shipping_tax' => 0.1]);
             // return Response::json($data);
-            foreach($data as $key => $item) {
+            foreach($books as $key => $item) {
                 $book = Book::find($item['id']);
                 $book->quantity_left -= $item['quantity'];
                 $book->save();

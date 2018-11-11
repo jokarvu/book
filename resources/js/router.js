@@ -27,6 +27,7 @@ import CategoryUpdate from './admin/components/pages/category/edit'
 // Invoice
 import InvoiceIndex from './admin/components/pages/invoice/index'
 import InvoiceShow from './admin/components/pages/invoice/show'
+import InvoiceCreate from './admin/components/pages/invoice/create'
 
 
 
@@ -75,6 +76,7 @@ const routes = [
             {path: 'category/:slug/edit', component: CategoryUpdate, name: 'CategoryUpdate'},
             // Invoice pages
             {path: 'invoice', component: InvoiceIndex},
+            {path: 'invoice/create', component: InvoiceCreate},
             {path: 'invoice/:id', component: InvoiceShow, name: 'InvoiceShow'},
         ]
     },

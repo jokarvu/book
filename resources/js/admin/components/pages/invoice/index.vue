@@ -8,7 +8,7 @@
                             <h4 class="c-grey-900 mB-20">Tất cả đơn hàng</h4>
                         </div>
                         <div class="col-md-6">
-                            <router-link to="/admin/user/create" class="btn btn-info float-right">Thêm đơn hàng</router-link>
+                            <router-link to="/admin/invoice/create" class="btn btn-info float-right">Thêm đơn hàng</router-link>
                         </div>
                     </div>
 
