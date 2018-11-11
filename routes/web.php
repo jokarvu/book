@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::resource('user', 'AccountController');
 Route::resource('dashboard', 'AdminDashboardController');
+Route::get('book/latest', 'BookController@latest');
+Route::get('book/popular', 'BookController@popular');
 Route::resource('book', 'BookController');
 Route::resource('category', 'CategoryController');
 Route::resource('import', 'ImportController');
@@ -34,6 +32,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', 'AuthController@logout');
 });
 
-Route::get('/{vue?}', function () {
+Route::get('/login', function () {
     return view('admin');
+});
+
+Route::get('/admin/{vue?}', function () {
+    return view('admin');
+})->where('vue', '[\/\.\w\-]+');
+
+
+Route::get('/{vue?}', function () {
+    return view('customer');
 })->where('vue', '[\/\.\w\-]+');

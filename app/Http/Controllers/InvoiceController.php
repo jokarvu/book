@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Invoice;
 use Auth;
+use App\Book;
 
 class InvoiceController extends Controller
 {
@@ -44,12 +45,23 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->can('create', Invoice::class)) {
-            $invoice = Invoice::create(['id' => Auth::user()->id, 'address' => Auth::user()->address, 'status_id' => 1, 'shipping_tax' => 0.1]);
+        if (Auth::user() && Auth::user()->can('create', Invoice::class)) {
             $data = $request->all();
+            // Kiểm tra xem trong kho còn đủ số lượng sách không
+            foreach ($data as $key => $item) {
+                $book = Book::find($item['id']);
+                if ($book->quantity_left < $item['quantity']) {
+                    return Response::json(['message' => 'Trong kho không đủ số lượng'], 422);
+                }
+            }
+            // Tạo đơn hàng
+            $invoice = Invoice::create(['user_id' => Auth::user()->id, 'address' => Auth::user()->address, 'status_id' => 1, 'shipping_tax' => 0.1]);
+            // return Response::json($data);
             foreach($data as $key => $item) {
-                $price = Book::find($id)->price;
-                $invoice->attach([$item['id'] => ['quantity' => $item['quantity'], 'price' => $price]]);
+                $book = Book::find($item['id']);
+                $book->quantity_left -= $item['quantity'];
+                $book->save();
+                $invoice->books()->attach([$item['id'] => ['quantity' => $item['quantity'], 'price' => $book->price]]);
             }
             return Response::json(['message' => 'Tạo đơn hàng thành công'], 200);
         }

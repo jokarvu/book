@@ -20,14 +20,14 @@ class BookController extends Controller
     public function index()
     {
         // Nếu là admin thì lấy danh sách các sách có trong cửa hàng kể cả các sách trong thùng rác
-        if (Auth::user()->isAdmin()) {
+        if (Auth::user() && Auth::user()->isAdmin()) {
             // Lấy danh sách sách bao gồm cả sách trong thùng rác kèm theo là danh mục của sách
             $books= Book::withTrashed()->with(['category' => function ($query) {
                 $query->withTrashed();
             }])->get();
         } else { 
             // Nếu chỉ là khách hoặc người dùng bình thường thì lấy ra danh sách sách (không bao gồm sách trong thùng rác)
-            $books = Book::all();
+            $books = Book::select('id', 'slug', 'quantity', 'quantity_left', 'name', 'price')->get();
         }
         // Trả về response danh sách sách cho client
         return Response::json($books, 200);
@@ -182,5 +182,15 @@ class BookController extends Controller
             return Response::json(['message' => 'Đã xóa sách thành công'], 200);
         }
         return Response::json(['message' => 'Bạn không có quyền xóa sách'], 403);
+    }
+
+    public function latest() {
+        $books = Book::select('name', 'slug', 'quantity', 'quantity_left', 'id', 'price')->orderBy('created_at', 'desc')->take(8)->get();
+        return Response::json($books, 200);
+    }
+
+    public function popular() {
+        $books = Book::select('name', 'slug', 'quantity', 'quantity_left', 'id', 'price')->orderByRaw('quantity - quantity_left DESC')->take(8)->get();
+        return Response::json($books, 200);
     }
 }

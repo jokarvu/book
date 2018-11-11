@@ -11,6 +11,7 @@ class Book extends Model
     
     protected $fillable = ['name', 'author', 'price', 'quantity', 'quantity_left', 'description', 'category_id', 'slug'];
     protected $dates = ['deleted_at'];
+    protected $appends = ['sold'];
 
     public function category()
     {
@@ -41,5 +42,9 @@ class Book extends Model
     {
         $this->attributes['slug'] = str_slug($value);
         $this->attributes['name'] = ucwords($value);
+    }
+
+    public function getSoldAttribute() {
+        return $this->quantity - $this->quantity_left;
     }
 }
