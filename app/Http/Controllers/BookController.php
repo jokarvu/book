@@ -142,12 +142,12 @@ class BookController extends Controller
         // Lấy ra sách cần sửa
         $book = Book::withTrashed()->where('slug', $slug)->firstOrFail();
         // Nếu người dùng có quyền sửa
+        // return $request->all();
         if(Auth::user()->can('update', $book)) {
             // Sửa sách 
-            // * Đoạn này đang lỗi không nhận được thông tin formData truyền từ axios
-            $data = $request->all();
+            $data = $request->except(['sold', 'thumbnail', '_method', 'deleted_at', 'created_at', 'updated_at']);
             try {
-                // Sử lý tên ảnh
+                // Xử lý tên ảnh
                 $thumbnail = str_slug($data['name']).'.jpg';
                 // Lưu ảnh
                 $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');

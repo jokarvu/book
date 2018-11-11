@@ -61632,31 +61632,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             categories: []
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         var app = this;
-        axios.get('/book/create').then(function (json) {
-            app.categories = json.data;
+        var slug = app.$route.params.slug;
+        axios.get('/book/' + slug + '/edit').then(function (json) {
+            app.categories = json.data.categories;
+            app.book = json.data.book;
         }).catch(function (errors) {
             // console.log(json);
             toastr.error(errors.message);
         });
     },
+    mounted: function mounted() {
+        //
+    },
 
     methods: {
-        AddNewBook: function AddNewBook() {
-            // Tao lan dau tien neu dien du form khong hoat dong? Need fix
+        UpdateBook: function UpdateBook() {
+            // Laravel bug. How to fix: change method to post. append a _method key to formData
             var app = this;
+            var slug = app.$route.params.slug;
             var form = new FormData();
             for (var key in app.book) {
                 form.append(key, app.book[key]);
             }
-            console.log(form);
+            form.append('_method', 'PUT');
             app.$validator.validateAll().then(function (result) {
                 if (!result) {
                     // validation failed
                     toastr.error('Có lỗi xảy ra');
                 } else {
-                    axios.post('/book', form).then(function (json) {
+                    console.log(form.getAll('name'));
+                    axios.post('/book/' + slug, form).then(function (json) {
                         toastr.success(json.data.message);
                         app.$router.push({ path: '/admin/book' });
                     }).catch(function (errors) {
@@ -61699,7 +61706,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.AddNewBook($event)
+                    return _vm.UpdateBook($event)
                   }
                 }
               },
@@ -61877,7 +61884,7 @@ var render = function() {
                       staticClass: "form-control-file",
                       class: { "is-invalid": _vm.errors.has("thumbnail") },
                       attrs: {
-                        "data-vv-rules": "required",
+                        "data-vv-rules": "",
                         name: "thumbnail",
                         type: "file"
                       },
@@ -62122,7 +62129,7 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
-                      [_vm._v("Add New Book")]
+                      [_vm._v("Update Book")]
                     )
                   ],
                   1
