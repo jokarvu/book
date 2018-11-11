@@ -42,7 +42,7 @@ const routes = [
         component: Login,
         beforeEnter: (to, from, next) => {
             return axios.get('/auth/check').then(response => {
-                return next({path: '/'});
+                return window.location.replace('http://book.com');
             }).catch(errors => {
                 return next()
             })

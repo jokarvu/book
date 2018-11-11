@@ -54051,7 +54051,7 @@ var routes = [{
     component: __WEBPACK_IMPORTED_MODULE_3__admin_components_login___default.a,
     beforeEnter: function beforeEnter(to, from, next) {
         return axios.get('/auth/check').then(function (response) {
-            return next({ path: '/' });
+            return window.location.replace('http://book.com');
         }).catch(function (errors) {
             return next();
         });
