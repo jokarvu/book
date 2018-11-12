@@ -19,8 +19,8 @@
                         </div>
                     </div>
                     <div class="d-flex flex-row-reverse clearfix">
-                        <router-link to="/admin/book" class="btn btn-danger mL-5">Back</router-link>
-                        <router-link :to="'/admin/book/' + book.slug + '/edit'" class="btn btn-primary">Update Book</router-link>
+                        <router-link to="/admin/book" class="btn btn-danger mL-5">Hủy</router-link>
+                        <router-link :to="'/admin/book/' + book.slug + '/edit'" class="btn btn-primary">Cập Nhật</router-link>
                     </div>
                 </div>
             </div>

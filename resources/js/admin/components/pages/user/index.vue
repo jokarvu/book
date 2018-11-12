@@ -5,10 +5,10 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">All Users</h4>
+                            <h4 class="c-grey-900 mB-20">Thống kê người dùng</h4>
                         </div>
                         <div class="col-md-6">
-                            <router-link to="/admin/user/create" class="btn btn-info float-right">Add New User</router-link>
+                            <router-link to="/admin/user/create" class="btn btn-info float-right">Thêm người dùng</router-link>
                         </div>
                     </div>
 
@@ -16,13 +16,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Tên đăng nhập</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created</th>
-                                <th scope="col">Updated</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Quyền</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Ngày sửa</th>
+                                <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                 <td>{{user.email}}</td>
                                 <td>{{user.role.name}}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-pill c-white" :class="user.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{user.deleted_at ? 'Deleted' : 'Active'}}</span>
+                                    <span class="badge badge-pill c-white" :class="user.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{user.deleted_at ? 'Đã xóa' : 'Hoạt động'}}</span>
                                 </td>
                                 <td class="text-center">{{user.created_at}}</td>
                                 <td class="text-center">{{user.updated_at}}</td>

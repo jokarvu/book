@@ -8,7 +8,7 @@
                         <form class="container" @submit.prevent="addNewInvoice">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>User</label>
+                                    <label>Người mua</label>
                                     <select v-model="user_id" v-validate data-vv-rules="required" class="select_user form-control" :class="{'is-invalid': errors.has('user_id') }" name="user_id">
                                         <option value="" disabled>None</option>
                                         <option v-for="user in users" :key="user.id" :value="user.id">{{user.username}}</option>
@@ -20,7 +20,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Book</label>
+                                    <label>Sách</label>
                                     <select data-vv-rules="required" id="select_book" class="form-control" :class="{'is-invalid': errors.has('book') }" name="book">
                                         <option v-for="book in books" :key="book.id" :value="book.id">{{book.name}}</option>
                                     </select>
@@ -46,8 +46,8 @@
                             <div class="d-flex flex-row-reverse clearfix">
                                 <!-- <div class="col-md-9"></div> -->
                                 <!-- <div class="col-md-3 col-md-offset-9 float-right"> -->
-                                    <router-link to="/admin/invoice" class="btn btn-danger">Cancel</router-link>
-                                    <button class="btn btn-primary mR-5" type="submit">Add New Invoice</button>
+                                    <router-link to="/admin/invoice" class="btn btn-danger">Hủy</router-link>
+                                    <button class="btn btn-primary mR-5" type="submit">Tạo Hóa Đơn</button>
                                 <!-- </div> -->
                             </div>
                         </form>

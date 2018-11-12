@@ -17,13 +17,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">Books</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Số đầu sách</th>
                                 <!-- <th scope="col">Category</th> -->
-                                <th scope="col">Status</th>
-                                <th scope="col">Updated</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Cập nhật cuối</th>
+                                <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,10 +37,10 @@
                                 </td>
                                 <td class="text-center">{{category.updated_at}}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-success">Show</router-link>
-                                    <router-link :to="{name: 'CategoryUpdate', params: {slug: category.slug}}" class="btn btn-sm btn-info">Edit</router-link>
+                                    <router-link :to="{name: 'CategoryShow', params: {slug: category.slug}}" class="btn btn-sm btn-success">Xem</router-link>
+                                    <router-link :to="{name: 'CategoryUpdate', params: {slug: category.slug}}" class="btn btn-sm btn-info">Sửa</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#category-modal-'+category.id">
-                                        Delete
+                                        Xóa
                                     </button>
                                     <!-- Modal -->
                                     <div class="modal fade" :id="'category-modal-'+category.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

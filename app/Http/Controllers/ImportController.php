@@ -79,7 +79,7 @@ class ImportController extends Controller
     {   
         $import = Import::find($id);
         if (Auth::user()->can('view', $import)) {
-            $import = Import::with('books:book_id,name,book_import.quantity,book_import.price')->whereId($id)->firstOrFail();
+            $import = Import::with('books:book_id,name,book_import.quantity,book_import.price')->with('supplier')->whereId($id)->firstOrFail();
             return Response::json($import, 200);
         }
         return Response::json(['message' => 'Bạn không có quyền xem mục này'], 403);

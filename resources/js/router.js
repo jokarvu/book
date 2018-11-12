@@ -31,6 +31,7 @@ import InvoiceCreate from './admin/components/pages/invoice/create'
 // Import
 import ImportIndex from './admin/components/pages/imports/index'
 import ImportCreate from './admin/components/pages/imports/create'
+import ImportShow from './admin/components/pages/imports/show'
 
 
 
@@ -84,6 +85,7 @@ const routes = [
             // Import page
             {path: 'import', component: ImportIndex},
             {path: 'import/create', component: ImportCreate},
+            {path: 'import/:id', component: ImportShow, name: 'ImportShow'},
         ]
     },
     {

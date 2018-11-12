@@ -8,14 +8,14 @@ a<template>
                         <form class="container" @submit.prevent="UpdateBook">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label>Name </label>
+                                    <label>Tên </label>
                                     <input v-model="book.name" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('name') }" name="name" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('name')">
                                         {{ errors.first('name') }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label>Price</label>
+                                    <label>Giá</label>
                                     <input v-model="book.price" v-validate data-vv-rules="required|numeric" class="form-control" :class="{'is-invalid': errors.has('price') }" name="price" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('price')">
                                         {{ errors.first('price') }}
@@ -24,14 +24,14 @@ a<template>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label>Author</label>
+                                    <label>Tác giả</label>
                                     <input v-model="book.author" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('author') }" name="author" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('author')">
                                         {{ errors.first('author') }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label>Thumbnail</label>
+                                    <label>Hình ảnh</label>
                                     <input @change="thumbnail" v-validate data-vv-rules="" class="form-control-file" :class="{'is-invalid': errors.has('thumbnail') }" name="thumbnail" type="file">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('thumbnail')">
                                         {{ errors.first('thumbnail') }}
@@ -40,7 +40,7 @@ a<template>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label>Category</label>
+                                    <label>Danh mục</label>
                                     <select v-model="book.category_id" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('category_id') }" name="category_id">
                                         <option value="" disabled>Choose...</option>
                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
@@ -50,7 +50,7 @@ a<template>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label>Quantity </label>
+                                    <label>Số lượng </label>
                                     <input v-model="book.quantity" v-validate data-vv-rules="required|numeric" class="form-control" :class="{'is-invalid': errors.has('quantity') }" name="quantity" type="numeric">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('quantity')">
                                         {{ errors.first('quantity') }}
@@ -59,7 +59,7 @@ a<template>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Description (Optional) </label>
+                                    <label>Mô tả (Tùy chọn) </label>
                                     <input v-model="book.description" v-validate data-vv-rules="" class="form-control" :class="{'is-invalid': errors.has('description') }" name="description" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('description')">
                                         {{ errors.first('description') }}
@@ -67,8 +67,8 @@ a<template>
                                 </div>
                             </div>
                             <div class="d-flex flex-row-reverse clearfix">
-                                <router-link to="/admin/book" class="btn btn-danger mL-5">Cancel</router-link>
-                                <button class="btn btn-primary" type="submit">Update Book</button>
+                                <router-link to="/admin/book" class="btn btn-danger mL-5">Hủy</router-link>
+                                <button class="btn btn-primary" type="submit">Cập nhật</button>
                             </div>
                         </form>
                     </div>

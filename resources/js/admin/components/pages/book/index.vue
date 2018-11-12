@@ -5,7 +5,7 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">Thống Kê Sách</h4>
+                            <h4 class="c-grey-900 mB-20">Thống kê sách</h4>
                         </div>
                         <div class="col-md-6">
                             <router-link to="/admin/book/create" class="btn btn-info float-right">Thêm đầu sách</router-link>
@@ -16,13 +16,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Tác giả</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                                 <td>{{book.price}}</td>
                                 <td class="text-center">{{book.quantity}}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-pill c-white" :class="book.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{book.deleted_at ? 'Deleted' : 'Available'}}</span>
+                                    <span class="badge badge-pill c-white" :class="book.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{book.deleted_at ? 'Hết hàng' : 'Còn hàng'}}</span>
                                 </td>
                                 <td class="text-center">
                                     <router-link :to="{name: 'BookShow', params: {slug: book.slug}}" class="btn btn-sm btn-success">Xem</router-link>

@@ -11,8 +11,8 @@ a<template>
                         <h4>Địa chỉ: {{user.address ? user.address : ''}}</h4>
                     </div>
                     <div class="d-flex flex-row-reverse clearfix">
-                        <router-link to="/admin/user" class="btn btn-danger mL-5">Back</router-link>
-                        <router-link :to="'/admin/user/' + user.username + '/edit'" class="btn btn-primary">Update User</router-link>
+                        <router-link to="/admin/user" class="btn btn-danger mL-5">Quay Lại</router-link>
+                        <router-link :to="'/admin/user/' + user.username + '/edit'" class="btn btn-primary">Cập Nhật</router-link>
                     </div>
                 </div>
             </div>

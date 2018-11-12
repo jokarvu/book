@@ -5,7 +5,7 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">Tất cả đơn hàng</h4>
+                            <h4 class="c-grey-900 mB-20">Thống kê đơn hàng</h4>
                         </div>
                         <div class="col-md-6">
                             <router-link to="/admin/invoice/create" class="btn btn-info float-right">Thêm đơn hàng</router-link>
@@ -16,14 +16,14 @@
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Ship Tax</th>
-                                <th scope="col">Note</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Created</th>
-                                <th scope="col">Updated</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Người mua</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Phí vận chuyển</th>
+                                <th scope="col">Ghi chú</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Cập nhật cuối</th>
+                                <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>

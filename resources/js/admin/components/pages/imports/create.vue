@@ -8,7 +8,7 @@
                         <form class="container" @submit.prevent="addNewImport">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Supplier</label>
+                                    <label>Nhà cung cấp</label>
                                     <select v-model="supplier_id" v-validate data-vv-rules="required" class="select_supplier form-control" :class="{'is-invalid': errors.has('supplier_id') }" name="supplier_id">
                                         <option value="" disabled>None</option>
                                         <option v-for="supplier in suppliers" :key="supplier.id" :value="supplier.id">{{supplier.name}}</option>
@@ -20,7 +20,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Note </label>
+                                    <label>Ghi chú </label>
                                     <input v-model="note" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('note') }" name="note" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('note')">
                                         {{ errors.first('note') }}
@@ -29,7 +29,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Book</label>
+                                    <label>Sách</label>
                                     <select data-vv-rules="required" id="select_book_import" class="form-control" :class="{'is-invalid': errors.has('book') }" name="book">
                                         <option v-for="book in books" :key="book.id" :value="book.id">{{book.name}}</option>
                                     </select>

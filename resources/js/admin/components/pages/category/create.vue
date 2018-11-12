@@ -8,7 +8,7 @@
                         <form class="container" @submit.prevent="AddNewCategory">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Name</label>
+                                    <label>Tên</label>
                                     <input v-model="category.name" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('name') }" name="name" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('name')">
                                         {{ errors.first('name') }}
@@ -17,7 +17,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Category</label>
+                                    <label>Danh mục cha</label>
                                     <select v-model="category.category_id" v-validate data-vv-rules="" class="form-control" :class="{'is-invalid': errors.has('category_id') }" name="category_id">
                                         <option value="">None</option>
                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label>Description</label>
+                                    <label>Mô tả</label>
                                     <input v-model="category.description" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('description') }" name="description" type="text">
                                     <div class="form-control-feedback text-danger" v-show="errors.has('description')">
                                         {{ errors.first('description') }}

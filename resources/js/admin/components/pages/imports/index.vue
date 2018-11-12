@@ -5,7 +5,7 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">Thống Kê Hóa Đơn Nhập</h4>
+                            <h4 class="c-grey-900 mB-20">Thống kê nhập hàng</h4>
                         </div>
                         <div class="col-md-6">
                             <router-link to="/admin/import/create" class="btn btn-info float-right">Nhập hàng</router-link>
@@ -16,11 +16,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">#ID</th>
-                                <th scope="col">Supplier</th>
-                                <th scope="col">Note</th>
-                                <th scope="col">Created</th>
-                                <th scope="col">Updated</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Nhà cung cấp</th>
+                                <th scope="col">Ghi chú</th>
+                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Cập nhật cuối</th>
+                                <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,8 +31,8 @@
                                 <td class="text-center">{{item.created_at}}</td>
                                 <td class="text-center">{{item.updated_at}}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'InvoiceShow', params: {id: item.id}}" class="btn btn-sm btn-success">Xem</router-link>
-                                    <router-link :to="{name: 'UserUpdate', params: {slug: item.id}}" class="btn btn-sm btn-info">Sửa</router-link>
+                                    <router-link :to="{name: 'ImportShow', params: {id: item.id}}" class="btn btn-sm btn-success">Xem</router-link>
+                                    <router-link :to="{name: 'ImportUpdate', params: {id: item.id}}" class="btn btn-sm btn-info">Sửa</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#importmodal-'+item.id">
                                         Xóa
                                     </button>
