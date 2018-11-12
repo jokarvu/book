@@ -5,7 +5,7 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">All Categories</h4>
+                            <h4 class="c-grey-900 mB-20">Thống kê danh mục</h4>
                         </div>
                         <div class="col-md-6">
                             <router-link to="/admin/category/create" class="btn btn-info float-right">Add New Category</router-link>

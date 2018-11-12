@@ -55,9 +55,6 @@ class InvoiceController extends Controller
         if (Auth::user() && Auth::user()->can('create', Invoice::class)) {
             $data = $request->all();
             if (isset($data['user_id'])) {
-                if ($data['user_id'] == null) {
-                    return Response::json(['message' => 'Bạn phải chọn một người dùng'], 422);
-                }
                 $user = User::find($data['user_id']);
                 $books = $data['carts'];
             } else {
@@ -78,7 +75,6 @@ class InvoiceController extends Controller
             }
             // Tạo đơn hàng
             $invoice = Invoice::create(['user_id' => $user->id, 'address' => $user->address, 'status_id' => 1, 'shipping_tax' => 0.1]);
-            // return Response::json($data);
             foreach($books as $key => $item) {
                 $book = Book::find($item['id']);
                 $book->quantity_left -= $item['quantity'];

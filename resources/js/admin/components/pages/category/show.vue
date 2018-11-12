@@ -6,10 +6,10 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">All Children Categories of {{category.name}}</h4>
+                            <h4 class="c-grey-900 mB-20">Danh mục của {{category.name}}</h4>
                         </div>
                         <div class="col-md-6">
-                            <router-link to="/admin/category/create" class="btn btn-info float-right">Add New Category</router-link>
+                            <router-link to="/admin/category/create" class="btn btn-info float-right">Thêm Danh Mục</router-link>
                         </div>
                     </div>
 
@@ -72,10 +72,10 @@
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="c-grey-900 mB-20">All Books of {{category.name}}</h4>
+                            <h4 class="c-grey-900 mB-20">Sách của {{category.name}}</h4>
                         </div>
                         <div class="col-md-6">
-                            <router-link to="/admin/book/create" class="btn btn-info float-right">Add New Book</router-link>
+                            <router-link to="/admin/book/create" class="btn btn-info float-right">Thêm Đầu Sách</router-link>
                         </div>
                     </div>
                     <table :id="'table-category-'+$route.params.slug" class="table table-striped table-bordered" cellspacing="0" width="100%">

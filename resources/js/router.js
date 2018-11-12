@@ -28,6 +28,9 @@ import CategoryUpdate from './admin/components/pages/category/edit'
 import InvoiceIndex from './admin/components/pages/invoice/index'
 import InvoiceShow from './admin/components/pages/invoice/show'
 import InvoiceCreate from './admin/components/pages/invoice/create'
+// Import
+import ImportIndex from './admin/components/pages/imports/index'
+import ImportCreate from './admin/components/pages/imports/create'
 
 
 
@@ -78,6 +81,9 @@ const routes = [
             {path: 'invoice', component: InvoiceIndex},
             {path: 'invoice/create', component: InvoiceCreate},
             {path: 'invoice/:id', component: InvoiceShow, name: 'InvoiceShow'},
+            // Import page
+            {path: 'import', component: ImportIndex},
+            {path: 'import/create', component: ImportCreate},
         ]
     },
     {

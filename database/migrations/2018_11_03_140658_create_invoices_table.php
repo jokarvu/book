@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('address');
             $table->integer('status_id')->unsigned()->default(1);
             $table->integer('shipping_tax')->unsigned();
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

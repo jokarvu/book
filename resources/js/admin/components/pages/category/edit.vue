@@ -3,7 +3,7 @@
         <div class="row gap-20">
             <div class="col-md-12">
                 <div class="bgc-white p-20 bd">
-                    <h4 class="c-grey-900 mB-20">Update Category</h4>
+                    <h4 class="c-grey-900 mB-20">Cập nhật danh mục</h4>
                     <div class="mT-30">
                         <form class="container" @submit.prevent="UpdateCategory">
                             <div class="row">

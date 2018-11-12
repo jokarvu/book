@@ -3,7 +3,7 @@ a<template>
         <div class="row gap-20">
             <div class="col-md-12">
                 <div class="bgc-white p-20 bd">
-                    <h4 class="c-grey-900 mB-20">Add New Book</h4>
+                    <h4 class="c-grey-900 mB-20">Thêm đầu sách</h4>
                     <div class="mT-30">
                         <form class="container" @submit.prevent="AddNewBook">
                             <div class="row">

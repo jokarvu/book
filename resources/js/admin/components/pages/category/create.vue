@@ -3,7 +3,7 @@
         <div class="row gap-20">
             <div class="col-md-12">
                 <div class="bgc-white p-20 bd">
-                    <h4 class="c-grey-900 mB-20">Add New Post</h4>
+                    <h4 class="c-grey-900 mB-20">Thêm Danh Mục</h4>
                     <div class="mT-30">
                         <form class="container" @submit.prevent="AddNewCategory">
                             <div class="row">
