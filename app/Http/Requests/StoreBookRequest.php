@@ -28,7 +28,6 @@ class StoreBookRequest extends FormRequest
             'name' => 'bail|required',
             'author' => 'bail|required',
             'price' => 'bail|required|numeric',
-            'quantity' => 'required|numeric'
         ];
     }
 

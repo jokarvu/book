@@ -160,6 +160,7 @@
         },
         methods: {
             changeQuantity (value, key, price, left) {
+				console.log(this.carts[key].quantity + value);
                 if (this.carts[key].quantity + value > left) {
                     toastr.warning('Trong kho chỉ còn ' + left + ' đầu sách này');
                     this.carts[key].quantity = left;

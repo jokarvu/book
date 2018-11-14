@@ -66524,6 +66524,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66650,6 +66652,10 @@ var render = function() {
                             )
                           ]
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(book.quantity_left))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -66807,6 +66813,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Số lượng")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Tình trạng")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Còn")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Tác vụ")])
       ])
@@ -66972,13 +66980,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66988,7 +66989,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 author: '',
                 description: '',
                 category_id: '',
-                quantity: 0,
                 price: 0,
                 thumbnail: null
             },
@@ -67272,7 +67272,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6 mb-3" }, [
+                  _c("div", { staticClass: "col-md-12 mb-3" }, [
                     _c("label", [_vm._v("Danh mục")]),
                     _vm._v(" "),
                     _c(
@@ -67349,60 +67349,6 @@ var render = function() {
                         _vm._v(
                           "\n                                    " +
                             _vm._s(_vm.errors.first("category_id")) +
-                            "\n                                "
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 mb-3" }, [
-                    _c("label", [_vm._v("Số lượng ")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.book.quantity,
-                          expression: "book.quantity"
-                        },
-                        { name: "validate", rawName: "v-validate" }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.errors.has("quantity") },
-                      attrs: {
-                        "data-vv-rules": "required|numeric",
-                        name: "quantity",
-                        type: "numeric"
-                      },
-                      domProps: { value: _vm.book.quantity },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.book, "quantity", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.errors.has("quantity"),
-                            expression: "errors.has('quantity')"
-                          }
-                        ],
-                        staticClass: "form-control-feedback text-danger"
-                      },
-                      [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(_vm.errors.first("quantity")) +
                             "\n                                "
                         )
                       ]
@@ -73789,12 +73735,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			carts: [],
 			cart_length: 0,
-			total: 0
+			total: 0,
+			user: null
 		};
 	},
 	created: function created() {
 		var _this = this;
 
+		axios.get('http://book.com/auth/current').then(function (response) {
+			_this.user = response.data;
+		}).catch(function (errors) {
+			///
+		});
 		if (localStorage.carts) {
 			this.carts = JSON.parse(localStorage.getItem('carts'));
 			this.cart_length = this.carts.length;
@@ -73843,6 +73795,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				return item.id != book.id;
 			});
 			__WEBPACK_IMPORTED_MODULE_0__event__["a" /* EventBus */].$emit('removeBookFromCartHeader', this.carts);
+		},
+		logout: function logout() {
+			axios.get('http://book.com/auth/logout').then(function (response) {
+				toastr.error(response.data.message);
+				window.location.replace('http://book.com');
+			}).catch(function (errors) {
+				ErrorHelper.error(errors);
+			});
 		}
 	}
 });
@@ -73865,7 +73825,44 @@ var render = function() {
         _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "header-icons" }, [
-          _vm._m(3),
+          _c("div", { staticClass: "header-wrapicon2" }, [
+            _c("img", {
+              staticClass: "header-icon1 js-show-header-dropdown",
+              attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
+            }),
+            _vm._v(" "),
+            _vm.user != null
+              ? _c("div", { staticClass: "header-cart header-dropdown" }, [
+                  _c("ul", { staticClass: "header-cart-wrapitem" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "header-cart-item" }, [
+                      _c("div", { staticClass: "header-cart-item-txt" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "header-cart-item-name",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.logout()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _c("span", { staticClass: "linedivide1" }),
           _vm._v(" "),
@@ -73989,7 +73986,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ])
             ])
           ])
@@ -73998,11 +73995,48 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "wrap_header_mobile" }, [
-      _vm._m(5),
+      _vm._m(6),
       _vm._v(" "),
       _c("div", { staticClass: "btn-show-menu" }, [
         _c("div", { staticClass: "header-icons-mobile" }, [
-          _vm._m(6),
+          _c("div", { staticClass: "header-wrapicon2" }, [
+            _c("img", {
+              staticClass: "header-icon1 js-show-header-dropdown",
+              attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
+            }),
+            _vm._v(" "),
+            _vm.user != null
+              ? _c("div", { staticClass: "header-cart header-dropdown" }, [
+                  _c("ul", { staticClass: "header-cart-wrapitem" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "header-cart-item" }, [
+                      _c("div", { staticClass: "header-cart-item-txt" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "header-cart-item-name",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.logout()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _c("span", { staticClass: "linedivide2" }),
           _vm._v(" "),
@@ -74093,17 +74127,17 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(7)
+                _vm._m(9)
               ])
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(8)
+        _vm._m(10)
       ])
     ]),
     _vm._v(" "),
-    _vm._m(9)
+    _vm._m(11)
   ])
 }
 var staticRenderFns = [
@@ -74234,56 +74268,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header-wrapicon2" }, [
-      _c("img", {
-        staticClass: "header-icon1 js-show-header-dropdown",
-        attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "header-cart header-dropdown" }, [
-        _c("ul", { staticClass: "header-cart-wrapitem" }, [
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
+    return _c("li", { staticClass: "header-cart-item" }, [
+      _c("div", { staticClass: "header-cart-item-txt" }, [
+        _c(
+          "a",
+          { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "header-cart-item" }, [
+      _c("div", { staticClass: "header-cart-item-txt" }, [
+        _c(
+          "a",
+          { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t")]
+        )
       ])
     ])
   },
@@ -74316,56 +74321,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header-wrapicon2" }, [
-      _c("img", {
-        staticClass: "header-icon1 js-show-header-dropdown",
-        attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "header-cart header-dropdown" }, [
-        _c("ul", { staticClass: "header-cart-wrapitem" }, [
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-cart-item" }, [
-            _c("div", { staticClass: "header-cart-item-txt" }, [
-              _c(
-                "a",
-                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
-                [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
+    return _c("li", { staticClass: "header-cart-item" }, [
+      _c("div", { staticClass: "header-cart-item-txt" }, [
+        _c(
+          "a",
+          { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "header-cart-item" }, [
+      _c("div", { staticClass: "header-cart-item-txt" }, [
+        _c(
+          "a",
+          { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t")]
+        )
       ])
     ])
   },
@@ -75182,7 +75158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		// Get sach
 		var app = this;
-		axios.get('/book/').then(function (repsonse) {
+		axios.get('/book/popular').then(function (repsonse) {
 			app.popular_books = repsonse.data;
 		}).catch(function (errors) {
 			ErrorHelper.error(errors);
@@ -80015,6 +79991,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		changeQuantity: function changeQuantity(value, key, price, left) {
+			console.log(this.carts[key].quantity + value);
 			if (this.carts[key].quantity + value > left) {
 				toastr.warning('Trong kho chỉ còn ' + left + ' đầu sách này');
 				this.carts[key].quantity = left;

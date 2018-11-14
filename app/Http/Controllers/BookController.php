@@ -63,6 +63,7 @@ class BookController extends Controller
         if(Auth::user() && Auth::user()->can('create', Book::class)) {
             // Lấy thông tin sách ngoại trừ hình ảnh mô tả
             $data = $request->except('thumbnail');
+            $data['quantity'] = 0;
             $data['quantity_left'] = $data['quantity'];
             try {
                 // Tên ảnh của sách sẽ có dạng slug.jpg (ví dụ: thang-quy-nho.jpg)
@@ -153,6 +154,7 @@ class BookController extends Controller
                     // Lưu ảnh
                     $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');
                 }
+                $data['quantity_left'] += $data['quantity'] - $book->quantity;
                 // Lưu thông tin chỉnh sửa
                 Book::withTrashed()->where('slug', $slug)->update($data);
                 // Trả về response thông báo cập nhật thành công

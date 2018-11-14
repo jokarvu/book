@@ -81,7 +81,7 @@
 						<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 
 						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						<div v-if="user != null" class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
@@ -99,7 +99,7 @@
 								</li>
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
+										<a @click.prevent="logout()" class="header-cart-item-name">
 											Đăng xuất
 										</a>
 									</div>
@@ -178,7 +178,7 @@
 						<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 
 						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
+						<div v-if="user != null" class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
@@ -196,7 +196,7 @@
 								</li>
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
+										<a @click.prevent="logout()" class="header-cart-item-name">
 											Đăng xuất
 										</a>
 									</div>
@@ -343,9 +343,15 @@
 				carts: [],
 				cart_length: 0,
 				total: 0,
+				user: null,
 			}
 		},
 		created () {
+			axios.get('http://book.com/auth/current').then(response => {
+				this.user = response.data;
+			}).catch(errors => {
+				///
+			});
 			if (localStorage.carts) {
 				this.carts = JSON.parse(localStorage.getItem('carts'));
 				this.cart_length = this.carts.length;
@@ -389,7 +395,15 @@
 					return item.id != book.id;
 				});
 				EventBus.$emit('removeBookFromCartHeader', this.carts);
-			}
+			},
+			logout () {
+				axios.get('http://book.com/auth/logout').then(response => {
+					toastr.error(response.data.message);
+					window.location.replace('http://book.com');
+				}).catch(errors => {
+					ErrorHelper.error(errors);
+				})
+			} 
 		}
 	}
 </script>

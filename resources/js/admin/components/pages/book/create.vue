@@ -39,7 +39,7 @@ a<template>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label>Danh mục</label>
                                     <select v-model="book.category_id" v-validate data-vv-rules="required" class="form-control" :class="{'is-invalid': errors.has('category_id') }" name="category_id">
                                         <option value="" disabled>Choose...</option>
@@ -47,13 +47,6 @@ a<template>
                                     </select>
                                     <div class="form-control-feedback text-danger" v-show="errors.has('category_id')">
                                         {{ errors.first('category_id') }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label>Số lượng </label>
-                                    <input v-model="book.quantity" v-validate data-vv-rules="required|numeric" class="form-control" :class="{'is-invalid': errors.has('quantity') }" name="quantity" type="numeric">
-                                    <div class="form-control-feedback text-danger" v-show="errors.has('quantity')">
-                                        {{ errors.first('quantity') }}
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +79,6 @@ a<template>
                     author: '',
                     description: '',
                     category_id: '',
-                    quantity: 0,
                     price: 0,
                     thumbnail: null,
                 },
