@@ -41,7 +41,7 @@ class BookController extends Controller
     public function create()
     {
         // Chỉ admin mới có quyền tạo sách mới
-        if(Auth::user()->can('create', Book::class)) {
+        if(Auth::user() && Auth::user()->can('create', Book::class)) {
             // Lấy ra danh sách danh mục (không bao gồm danh mục đã bị xóa)
             $categories = Category::all();
             // Trả về response cho client
@@ -60,7 +60,7 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         // Nếu có quyền tạo danh mục mới (là admin)
-        if(Auth::user()->can('create', Book::class)) {
+        if(Auth::user() && Auth::user()->can('create', Book::class)) {
             // Lấy thông tin sách ngoại trừ hình ảnh mô tả
             $data = $request->except('thumbnail');
             $data['quantity_left'] = $data['quantity'];
@@ -91,7 +91,7 @@ class BookController extends Controller
     public function show($slug)
     {
         // Nếu là admin thì có quyền xem thông tin cả sách đã xóa
-        if (Auth::user()->isAdmin()) {
+        if (Auth::user() && Auth::user()->isAdmin()) {
             // Lấy danh sách sách kể cả đã bị xóa 
             $book = Book::withTrashed()->whereSlug($slug)->with(['category' => function ($query) {
                 $query->withTrashed();
@@ -120,7 +120,7 @@ class BookController extends Controller
         // Lấy thông tin sách muốn sửa (có slug là $slug)
         $book = Book::withTrashed()->where('slug', $slug)->firstOrFail();
         // Nếu có quyền sửa sách (là admin)
-        if(Auth::user()->can('update', $book)) {
+        if(Auth::user() && Auth::user()->can('update', $book)) {
             // Lấy ra danh sách danh mục để hiển thị trên form sửa sách
             $categories = Category::all();
             // Trả về respone gồm thông tin sách và danh sách danh mục
@@ -143,7 +143,7 @@ class BookController extends Controller
         $book = Book::withTrashed()->where('slug', $slug)->firstOrFail();
         // Nếu người dùng có quyền sửa
         // return $request->all();
-        if(Auth::user()->can('update', $book)) {
+        if(Auth::user() && Auth::user()->can('update', $book)) {
             // Sửa sách 
             $data = $request->except(['sold', 'thumbnail', '_method', 'deleted_at', 'created_at', 'updated_at']);
             try {
@@ -173,7 +173,7 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::withTrashed()->find($id);
-        if (Auth::user()->can('delete', $book)) {
+        if (Auth::user() && Auth::user()->can('delete', $book)) {
             // Tạm thời chưa sử lý được việc xóa các import và invoice của sách bị xóa vì lỗi 'updated_at' ambiguous
             // Có thể xử lý bằng QueryBuilder nhưng dài =]]z
             // $book->imports()->delete()->withoutTimestamps();

@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isAdmin()) {
+        if(Auth::user() && Auth::user()->isAdmin()) {
             $categories = Category::withTrashed()->with(['category' => function ($query) {
                 $query->withTrashed();
             }])->withCount('books')->get();
@@ -33,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->can('create', Category::class)) {
+        if(Auth::user() && Auth::user()->can('create', Category::class)) {
             $categories = Category::withTrashed()->get();
             return Response::json($categories, 200);
         }
@@ -48,7 +48,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->can('create', Category::class)) {
+        if(Auth::user() && Auth::user()->can('create', Category::class)) {
             $data = $request->all();
             try {
                 Category::create($data);
@@ -95,7 +95,7 @@ class CategoryController extends Controller
     {
         $category = Category::withTrashed()->where('slug', $slug)->firstOrFail();
         $categories = Category::withTrashed()->get();
-        if(Auth::user()->can('update', $category)) {
+        if(Auth::user() && Auth::user()->can('update', $category)) {
             return Response::json(compact(['category', 'categories']), 200);
         }
         return Response::json(['message' => 'Bạn không có quyền cập nhật danh mục'], 403);
@@ -111,7 +111,7 @@ class CategoryController extends Controller
     public function update(Request $request, $slug)
     {
         $category = Category::whereSlug($slug)->firstOrFail();
-        if (Auth::user()->can('update', $category)) {
+        if (Auth::user() && Auth::user()->can('update', $category)) {
             try {
                 $data = $request->all();
                 $category->update($data);
@@ -132,7 +132,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        if (Auth::user()->can('delete', $category)) {
+        if (Auth::user() && Auth::user()->can('delete', $category)) {
             try {
                 $category->children()->delete();
                 $category->delete();

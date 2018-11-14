@@ -93,7 +93,7 @@ class AccountController extends Controller
         // Lấy ra thông tin người dùng có username là $slug
         $user = User::withTrashed()->where('username', $slug)->with('role:id,name')->firstOrFail();
         // Nếu người dùng hiện tại có quyền xem thông tin của $user có username là $slug
-        if (Auth::user()->can('view', $user)) {
+        if (Auth::user() && Auth::user()->can('view', $user)) {
             // Trả về thông tin người dùng
             return Response($user, 200);
         }
@@ -138,7 +138,7 @@ class AccountController extends Controller
     {
         // Lấy ra thông tin người dùng có username là $slug
         $user = User::withTrashed()->where('username', $slug)->firstOrFail();
-        if(Auth::user()->can('update', $user)) {
+        if(Auht::user() && Auth::user()->can('update', $user)) {
             // Update thông tin user
             $user->username = $request->username;
             $user->address = $request->address;
@@ -163,7 +163,7 @@ class AccountController extends Controller
         // Lấy ra người dùng có id là $id
         $user = User::find($id);
         // Nếu người dùng đang đăng nhập có quyền xóa người dùng (là admin)
-        if (Auth::user()->can('delete', $user)) {
+        if (Auth::user() && Auth::user()->can('delete', $user)) {
             // Xóa người dùng
             $user->delete();
             // Trả về response thông báo xóa thành công

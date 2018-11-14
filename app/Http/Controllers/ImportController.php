@@ -18,7 +18,7 @@ class ImportController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->isAdmin()) {
+        if (Auth::user() && Auth::user()->isAdmin()) {
             $imports = Import::withTrashed()->with('supplier:id,name')->get();
             return Response::json($imports, 200);
         }
@@ -32,7 +32,7 @@ class ImportController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->can('create', Import::class)) {
+        if(Auth::user() && Auth::user()->can('create', Import::class)) {
             $suppliers = Supplier::withTrashed()->get();
             $books = Book::withTrashed()->get();
             return Response::json(compact(['suppliers', 'books']), 200);
@@ -48,7 +48,7 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->can('create', Import::class)) {
+        if(Auth::user() && Auth::user()->can('create', Import::class)) {
             $data = $request->all();
             $supplier_id = $data['supplier_id'];
             $note = $data['note'];
@@ -78,7 +78,7 @@ class ImportController extends Controller
     public function show($id)
     {   
         $import = Import::find($id);
-        if (Auth::user()->can('view', $import)) {
+        if (Auth::user() && Auth::user()->can('view', $import)) {
             $import = Import::with('books:book_id,name,book_import.quantity,book_import.price')->with('supplier')->whereId($id)->firstOrFail();
             return Response::json($import, 200);
         }
@@ -93,7 +93,7 @@ class ImportController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Repsonse::json(['message' => 'Đang xây dựng'], 404);
     }
 
     /**
@@ -105,7 +105,7 @@ class ImportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Response::json(['message' => 'Đang xây dựng'], 404);
     }
 
     /**
@@ -116,6 +116,11 @@ class ImportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $import = Import::find($id);
+        if (Auth::user() && Auth::user()->can('delete', $import)) {
+            $import->delete();
+            return Response::json(['message' => 'Xóa hóa đơn nhập hàng thành công'], 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền truy cập'], 403);
     }
 }

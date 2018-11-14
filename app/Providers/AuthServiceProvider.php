@@ -17,7 +17,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Book' => 'App\Policies\BookPolicy',
         'App\Category' => 'App\Policies\CategoryPolicy',
         'App\Invoice' => 'App\Policies\InvoicePolicy',
-        'App\Import' => 'App\Policies\ImportPolicy'
+        'App\Import' => 'App\Policies\ImportPolicy',
+        'App\Role' => 'App\Policies\RolePolicy',
+        'App\Supplier' => 'App\Polices\SupplierPolicy',
     ];
 
     /**
