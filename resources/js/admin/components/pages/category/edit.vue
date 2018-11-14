@@ -71,6 +71,7 @@
                 app.category = json.data.category;
             }).catch(function (errors) {
                 ErrorHelper.error(errors);
+                app.$router.push({path: '/admin/category'});
             });
         },
         methods: {

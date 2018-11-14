@@ -66634,11 +66634,19 @@ var render = function() {
                             staticClass: "badge badge-pill c-white",
                             class: book.deleted_at
                               ? "bgc-red-700"
-                              : "bgc-green-400"
+                              : book.quantity_left == 0
+                                ? "bgc-orange-700"
+                                : "bgc-green-400"
                           },
                           [
                             _vm._v(
-                              _vm._s(book.deleted_at ? "Hết hàng" : "Còn hàng")
+                              _vm._s(
+                                book.deleted_at
+                                  ? "Đã xóa"
+                                  : book.quantity_left == 0
+                                    ? "Hết hàng"
+                                    : "Còn hàng"
+                              )
                             )
                           ]
                         )
@@ -70363,6 +70371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             app.category = json.data.category;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
+            app.$router.push({ path: '/admin/category' });
         });
     },
 
@@ -75173,7 +75182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		// Get sach
 		var app = this;
-		axios.get('/book/popular').then(function (repsonse) {
+		axios.get('/book/').then(function (repsonse) {
 			app.popular_books = repsonse.data;
 		}).catch(function (errors) {
 			ErrorHelper.error(errors);

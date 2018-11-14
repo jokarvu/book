@@ -266,7 +266,7 @@ export default {
 	mounted () {
 		// Get sach
 		var app = this;
-		axios.get('/book/popular').then(repsonse => {
+		axios.get('/book/').then(repsonse => {
 			app.popular_books = repsonse.data;
 		}).catch(errors => {
 			ErrorHelper.error(errors);

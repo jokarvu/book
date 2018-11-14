@@ -148,9 +148,11 @@ class BookController extends Controller
             $data = $request->except(['sold', 'thumbnail', '_method', 'deleted_at', 'created_at', 'updated_at']);
             try {
                 // Xử lý tên ảnh
-                $thumbnail = str_slug($data['name']).'.jpg';
-                // Lưu ảnh
-                $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');
+                if ($request->file('thumbnail')) {
+                    $thumbnail = str_slug($data['name']).'.jpg';
+                    // Lưu ảnh
+                    $path = $request->file('thumbnail')->storeAs('product', $thumbnail, 'public');
+                }
                 // Lưu thông tin chỉnh sửa
                 Book::withTrashed()->where('slug', $slug)->update($data);
                 // Trả về response thông báo cập nhật thành công
@@ -174,10 +176,6 @@ class BookController extends Controller
     {
         $book = Book::withTrashed()->find($id);
         if (Auth::user() && Auth::user()->can('delete', $book)) {
-            // Tạm thời chưa sử lý được việc xóa các import và invoice của sách bị xóa vì lỗi 'updated_at' ambiguous
-            // Có thể xử lý bằng QueryBuilder nhưng dài =]]z
-            // $book->imports()->delete()->withoutTimestamps();
-            // $book->invoices()->delete();
             $book->delete();
             return Response::json(['message' => 'Đã xóa sách thành công'], 200);
         }

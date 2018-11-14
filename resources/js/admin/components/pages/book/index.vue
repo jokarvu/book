@@ -34,7 +34,7 @@
                                 <td>{{book.price}}</td>
                                 <td class="text-center">{{book.quantity}}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-pill c-white" :class="book.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{book.deleted_at ? 'Hết hàng' : 'Còn hàng'}}</span>
+                                    <span class="badge badge-pill c-white" :class="book.deleted_at ? 'bgc-red-700' : (book.quantity_left == 0 ? 'bgc-orange-700' : 'bgc-green-400')">{{book.deleted_at ? 'Đã xóa' : (book.quantity_left == 0 ? 'Hết hàng' : 'Còn hàng')}}</span>
                                 </td>
                                 <td class="text-center">
                                     <router-link :to="{name: 'BookShow', params: {slug: book.slug}}" class="btn btn-sm btn-success">Xem</router-link>
