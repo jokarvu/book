@@ -58,6 +58,8 @@
                     }).catch(errors => {
                         app.$router.push("/");
                     })
+                }).catch(errors => {
+                  ErrorHelper.error(errors);
                 })
             }
         }

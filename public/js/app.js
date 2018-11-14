@@ -60703,6 +60703,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }).catch(function (errors) {
                     app.$router.push("/");
                 });
+            }).catch(function (errors) {
+                ErrorHelper.error(errors);
             });
         }
     }
