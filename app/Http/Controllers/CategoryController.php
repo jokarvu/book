@@ -68,17 +68,19 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
-        if (Auth::user()->isAdmin()) {
+        if (Auth::user() && Auth::user()->isAdmin()) {
+            $categories = Category::withTrashed()->get();
             $category = Category::withTrashed()->where('slug', $slug)->firstOrFail();
             $books = $category->books()->get();
             $children = $category->children()->withTrashed()->withCount('books')->get();
         } else {
+            $categories = Category::all();
             $category = Category::where('slug', $slug)->firstOrFail();
             $books = $category->books()->get();
             $children = $category->children()->get();
         }
         if($category) {
-            return Response::json(compact(['category', 'books', 'children']), 200);
+            return Response::json(compact(['category', 'books', 'children', 'categories']), 200);
         }
         return Response::json(['message' => 'Danh mục không tồn tại'], 404);
     }

@@ -3,7 +3,7 @@
         <section class="slide1">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" style="background-image: url(images/master-slide-02.jpg);">
+				<div class="item-slick1 item1-slick1" style="background-image: url(images/banner.jpeg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
 							Women Collection 2018
@@ -33,7 +33,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-02.jpg" alt="IMG-BENNER">
+						<img src="images/tapvan.jpg" alt="IMG-BENNER" width="370" height="480">
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
@@ -45,7 +45,7 @@
 
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-05.jpg" alt="IMG-BENNER">
+						<img src="images/tieuthuyet.jpg" alt="IMG-BENNER" width="370" height="340">
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
@@ -59,7 +59,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-03.jpg" alt="IMG-BENNER">
+						<img src="images/truyentranh.jpg" alt="IMG-BENNER" width="370" height="340">
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
@@ -71,7 +71,7 @@
 
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-07.jpg" alt="IMG-BENNER">
+						<img src="images/truyendai.jpg" alt="IMG-BENNER" width="370" height="480">
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
@@ -85,7 +85,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-04.jpg" alt="IMG-BENNER">
+						<img src="images/truyenngan.jpg" alt="IMG-BENNER" width="370" height="480">
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
@@ -193,7 +193,7 @@
 
 								<div class="block2-btn-addcart w-size1 trans-0-4">
 									<!-- Button -->
-									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									<button @click="addCart(item)" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 										Add to Cart
 									</button>
 								</div>

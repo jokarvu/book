@@ -71072,7 +71072,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Ngày tạo")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cập nhật cuối")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ngày sửa")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Tác vụ")])
       ])
@@ -73719,6 +73719,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74171,16 +74225,58 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "header-wrapicon1 dis-block", attrs: { href: "#" } },
-      [
-        _c("img", {
-          staticClass: "header-icon1",
-          attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "header-wrapicon2" }, [
+      _c("img", {
+        staticClass: "header-icon1 js-show-header-dropdown",
+        attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "header-cart header-dropdown" }, [
+        _c("ul", { staticClass: "header-cart-wrapitem" }, [
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -74211,16 +74307,58 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "header-wrapicon1 dis-block", attrs: { href: "#" } },
-      [
-        _c("img", {
-          staticClass: "header-icon1",
-          attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "header-wrapicon2" }, [
+      _c("img", {
+        staticClass: "header-icon1 js-show-header-dropdown",
+        attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "header-cart header-dropdown" }, [
+        _c("ul", { staticClass: "header-cart-wrapitem" }, [
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐơn hàng\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-cart-item" }, [
+            _c("div", { staticClass: "header-cart-item-txt" }, [
+              _c(
+                "a",
+                { staticClass: "header-cart-item-name", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t\t\t\tĐăng xuất\n\t\t\t\t\t\t\t\t\t\t"
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -78585,7 +78723,35 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(5, true)
+                      _c("div", { staticClass: "block2-overlay trans-0-4" }, [
+                        _vm._m(5, true),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "block2-btn-addcart w-size1 trans-0-4"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4",
+                                on: {
+                                  click: function($event) {
+                                    _vm.addCart(item)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t\t\t\tAdd to Cart\n\t\t\t\t\t\t\t\t\t"
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
                     ]
                   ),
                   _vm._v(" "),
@@ -78636,9 +78802,7 @@ var staticRenderFns = [
             "div",
             {
               staticClass: "item-slick1 item1-slick1",
-              staticStyle: {
-                "background-image": "url(images/master-slide-02.jpg)"
-              }
+              staticStyle: { "background-image": "url(images/banner.jpeg)" }
             },
             [
               _c(
@@ -78712,7 +78876,12 @@ var staticRenderFns = [
               { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
               [
                 _c("img", {
-                  attrs: { src: "images/banner-02.jpg", alt: "IMG-BENNER" }
+                  attrs: {
+                    src: "images/tapvan.jpg",
+                    alt: "IMG-BENNER",
+                    width: "370",
+                    height: "480"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
@@ -78733,7 +78902,12 @@ var staticRenderFns = [
               { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
               [
                 _c("img", {
-                  attrs: { src: "images/banner-05.jpg", alt: "IMG-BENNER" }
+                  attrs: {
+                    src: "images/tieuthuyet.jpg",
+                    alt: "IMG-BENNER",
+                    width: "370",
+                    height: "340"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
@@ -78756,7 +78930,12 @@ var staticRenderFns = [
               { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
               [
                 _c("img", {
-                  attrs: { src: "images/banner-03.jpg", alt: "IMG-BENNER" }
+                  attrs: {
+                    src: "images/truyentranh.jpg",
+                    alt: "IMG-BENNER",
+                    width: "370",
+                    height: "340"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
@@ -78777,7 +78956,12 @@ var staticRenderFns = [
               { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
               [
                 _c("img", {
-                  attrs: { src: "images/banner-07.jpg", alt: "IMG-BENNER" }
+                  attrs: {
+                    src: "images/truyendai.jpg",
+                    alt: "IMG-BENNER",
+                    width: "370",
+                    height: "480"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
@@ -78800,7 +78984,12 @@ var staticRenderFns = [
               { staticClass: "block1 hov-img-zoom pos-relative m-b-30" },
               [
                 _c("img", {
-                  attrs: { src: "images/banner-04.jpg", alt: "IMG-BENNER" }
+                  attrs: {
+                    src: "images/truyenngan.jpg",
+                    alt: "IMG-BENNER",
+                    width: "370",
+                    height: "480"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "block1-wrapbtn w-size2" }, [
@@ -78917,36 +79106,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "block2-overlay trans-0-4" }, [
-      _c(
-        "a",
-        {
-          staticClass: "block2-btn-addwishlist hov-pointer trans-0-4",
-          attrs: { href: "#" }
-        },
-        [
-          _c("i", {
-            staticClass: "icon-wishlist icon_heart_alt",
-            attrs: { "aria-hidden": "true" }
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "icon-wishlist icon_heart dis-none",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "block2-btn-addcart w-size1 trans-0-4" }, [
-        _c(
-          "button",
-          {
-            staticClass: "flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-          },
-          [_vm._v("\n\t\t\t\t\t\t\t\t\t\tAdd to Cart\n\t\t\t\t\t\t\t\t\t")]
-        )
-      ])
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "block2-btn-addwishlist hov-pointer trans-0-4",
+        attrs: { href: "#" }
+      },
+      [
+        _c("i", {
+          staticClass: "icon-wishlist icon_heart_alt",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "icon-wishlist icon_heart dis-none",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -79224,73 +79401,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -79302,6 +79412,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 slug: '',
                 id: ''
             },
+            categories: [],
             books: []
         };
     },
@@ -79311,6 +79422,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/category/' + slug).then(function (response) {
             app.books = response.data.books;
             app.category = response.data.category;
+            app.categories = response.data.categories;
         });
     },
     mounted: function mounted() {
@@ -79341,15 +79453,79 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "section",
+      {
+        staticClass: "bg-title-page p-t-50 p-b-40 flex-col-c-m",
+        staticStyle: { "background-image": "url(images/heading-pages-02.jpg)" }
+      },
+      [
+        _c("h2", { staticClass: "l-text2 t-center" }, [
+          _vm._v("\n\t\t\t" + _vm._s(_vm.category.name) + "\n\t\t")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "m-text13 t-center" }, [
+          _vm._v("\n\t\t\t" + _vm._s(_vm.category.description) + "\n\t\t")
+        ])
+      ]
+    ),
     _vm._v(" "),
     _c("section", { staticClass: "bgwhite p-t-55 p-b-65" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "col-sm-6 col-md-4 col-lg-3 p-b-50" }, [
+            _c("div", { staticClass: "leftbar p-r-20 p-r-0-sm" }, [
+              _c("h4", { staticClass: "m-text14 p-b-7" }, [
+                _vm._v("\n\t\t\t\t\t\t\tCategories\n\t\t\t\t\t\t")
+              ]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "p-b-54" },
+                _vm._l(_vm.categories, function(category) {
+                  return _c("li", { key: category.id, staticClass: "p-t-4" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "s-text13 active1",
+                        attrs: { href: "/" + category.slug }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t\t" +
+                            _vm._s(category.name) +
+                            "\n\t\t\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "m-text14 p-b-32" }, [
+                _vm._v("\n\t\t\t\t\t\t\tFilters\n\t\t\t\t\t\t")
+              ]),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-6 col-md-8 col-lg-9 p-b-50" }, [
-            _vm._m(2),
+            _c("div", { staticClass: "flex-sb-m flex-w p-b-35" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("span", { staticClass: "s-text8 p-t-5 p-b-5" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t\tShowing 1–" +
+                    _vm._s(_vm.books.length) +
+                    " of " +
+                    _vm._s(_vm.books.length) +
+                    " results\n\t\t\t\t\t\t"
+                )
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "div",
@@ -79460,246 +79636,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "bg-title-page p-t-50 p-b-40 flex-col-c-m",
-        staticStyle: { "background-image": "url(images/heading-pages-02.jpg)" }
-      },
-      [
-        _c("h2", { staticClass: "l-text2 t-center" }, [
-          _vm._v("\n\t\t\tWomen\n\t\t")
+    return _c("div", { staticClass: "filter-price p-t-22 p-b-50 bo3" }, [
+      _c("div", { staticClass: "m-text15 p-b-17" }, [
+        _vm._v("\n\t\t\t\t\t\t\t\tPrice\n\t\t\t\t\t\t\t")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wra-filter-bar" }, [
+        _c("div", { attrs: { id: "filter-bar" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex-sb-m flex-w p-t-16" }, [
+        _c("div", { staticClass: "w-size11" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4"
+            },
+            [_vm._v("\n\t\t\t\t\t\t\t\t\t\tFilter\n\t\t\t\t\t\t\t\t\t")]
+          )
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "m-text13 t-center" }, [
-          _vm._v("\n\t\t\tNew Arrivals Women Collection 2018\n\t\t")
+        _c("div", { staticClass: "s-text3 p-t-10 p-b-10" }, [
+          _vm._v("\n\t\t\t\t\t\t\t\t\tRange: $"),
+          _c("span", { attrs: { id: "value-lower" } }, [_vm._v("610")]),
+          _vm._v(" - $"),
+          _c("span", { attrs: { id: "value-upper" } }, [_vm._v("980")])
         ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-4 col-lg-3 p-b-50" }, [
-      _c("div", { staticClass: "leftbar p-r-20 p-r-0-sm" }, [
-        _c("h4", { staticClass: "m-text14 p-b-7" }, [
-          _vm._v("\n\t\t\t\t\t\t\tCategories\n\t\t\t\t\t\t")
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "p-b-54" }, [
-          _c("li", { staticClass: "p-t-4" }, [
-            _c("a", { staticClass: "s-text13 active1", attrs: { href: "#" } }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tAll\n\t\t\t\t\t\t\t\t")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-t-4" }, [
-            _c("a", { staticClass: "s-text13", attrs: { href: "#" } }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tWomen\n\t\t\t\t\t\t\t\t")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-t-4" }, [
-            _c("a", { staticClass: "s-text13", attrs: { href: "#" } }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tMen\n\t\t\t\t\t\t\t\t")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-t-4" }, [
-            _c("a", { staticClass: "s-text13", attrs: { href: "#" } }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tKids\n\t\t\t\t\t\t\t\t")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-t-4" }, [
-            _c("a", { staticClass: "s-text13", attrs: { href: "#" } }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tAccesories\n\t\t\t\t\t\t\t\t")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("h4", { staticClass: "m-text14 p-b-32" }, [
-          _vm._v("\n\t\t\t\t\t\t\tFilters\n\t\t\t\t\t\t")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "filter-price p-t-22 p-b-50 bo3" }, [
-          _c("div", { staticClass: "m-text15 p-b-17" }, [
-            _vm._v("\n\t\t\t\t\t\t\t\tPrice\n\t\t\t\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "wra-filter-bar" }, [
-            _c("div", { attrs: { id: "filter-bar" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex-sb-m flex-w p-t-16" }, [
-            _c("div", { staticClass: "w-size11" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4"
-                },
-                [_vm._v("\n\t\t\t\t\t\t\t\t\t\tFilter\n\t\t\t\t\t\t\t\t\t")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "s-text3 p-t-10 p-b-10" }, [
-              _vm._v("\n\t\t\t\t\t\t\t\t\tRange: $"),
-              _c("span", { attrs: { id: "value-lower" } }, [_vm._v("610")]),
-              _vm._v(" - $"),
-              _c("span", { attrs: { id: "value-upper" } }, [_vm._v("980")])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "filter-color p-t-22 p-b-50 bo3" }, [
-          _c("div", { staticClass: "m-text15 p-b-12" }, [
-            _vm._v("\n\t\t\t\t\t\t\t\tColor\n\t\t\t\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "flex-w" }, [
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter1",
-                  type: "checkbox",
-                  name: "color-filter1"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter1",
-                attrs: { for: "color-filter1" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter2",
-                  type: "checkbox",
-                  name: "color-filter2"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter2",
-                attrs: { for: "color-filter2" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter3",
-                  type: "checkbox",
-                  name: "color-filter3"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter3",
-                attrs: { for: "color-filter3" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter4",
-                  type: "checkbox",
-                  name: "color-filter4"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter4",
-                attrs: { for: "color-filter4" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter5",
-                  type: "checkbox",
-                  name: "color-filter5"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter5",
-                attrs: { for: "color-filter5" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter6",
-                  type: "checkbox",
-                  name: "color-filter6"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter6",
-                attrs: { for: "color-filter6" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "m-r-10" }, [
-              _c("input", {
-                staticClass: "checkbox-color-filter",
-                attrs: {
-                  id: "color-filter7",
-                  type: "checkbox",
-                  name: "color-filter7"
-                }
-              }),
-              _vm._v(" "),
-              _c("label", {
-                staticClass: "color-filter color-filter7",
-                attrs: { for: "color-filter7" }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "search-product pos-relative bo4 of-hidden" },
-          [
-            _c("input", {
-              staticClass: "s-text7 size6 p-l-23 p-r-50",
-              attrs: {
-                type: "text",
-                name: "search-product",
-                placeholder: "Search Products..."
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "flex-c-m size5 ab-r-m color2 color0-hov trans-0-4"
-              },
-              [
-                _c("i", {
-                  staticClass: "fs-12 fa fa-search",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]
-            )
-          ]
-        )
       ])
     ])
   },
@@ -79707,60 +79670,84 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-sb-m flex-w p-b-35" }, [
-      _c("div", { staticClass: "flex-w" }, [
-        _c(
-          "div",
-          {
-            staticClass: "rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"
-          },
-          [
-            _c(
-              "select",
-              { staticClass: "selection-2", attrs: { name: "sorting" } },
-              [
-                _c("option", [_vm._v("Default Sorting")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Popularity")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Price: low to high")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Price: high to low")])
-              ]
-            )
-          ]
-        ),
+    return _c(
+      "div",
+      { staticClass: "search-product pos-relative bo4 of-hidden" },
+      [
+        _c("input", {
+          staticClass: "s-text7 size6 p-l-23 p-r-50",
+          attrs: {
+            type: "text",
+            name: "search-product",
+            placeholder: "Search Products..."
+          }
+        }),
         _vm._v(" "),
         _c(
-          "div",
-          {
-            staticClass: "rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"
-          },
+          "button",
+          { staticClass: "flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" },
           [
-            _c(
-              "select",
-              { staticClass: "selection-2", attrs: { name: "sorting" } },
-              [
-                _c("option", [_vm._v("Price")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("$0.00 - $50.00")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("$50.00 - $100.00")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("$100.00 - $150.00")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("$150.00 - $200.00")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("$200.00+")])
-              ]
-            )
+            _c("i", {
+              staticClass: "fs-12 fa fa-search",
+              attrs: { "aria-hidden": "true" }
+            })
           ]
         )
-      ]),
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-w" }, [
+      _c(
+        "div",
+        {
+          staticClass: "rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"
+        },
+        [
+          _c(
+            "select",
+            { staticClass: "selection-2", attrs: { name: "sorting" } },
+            [
+              _c("option", [_vm._v("Default Sorting")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Popularity")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Price: low to high")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Price: high to low")])
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
-      _c("span", { staticClass: "s-text8 p-t-5 p-b-5" }, [
-        _vm._v("\n\t\t\t\t\t\t\tShowing 1–12 of 16 results\n\t\t\t\t\t\t")
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"
+        },
+        [
+          _c(
+            "select",
+            { staticClass: "selection-2", attrs: { name: "sorting" } },
+            [
+              _c("option", [_vm._v("Price")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("$0.00 - $50.00")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("$50.00 - $100.00")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("$100.00 - $150.00")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("$150.00 - $200.00")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("$200.00+")])
+            ]
+          )
+        ]
+      )
     ])
   },
   function() {

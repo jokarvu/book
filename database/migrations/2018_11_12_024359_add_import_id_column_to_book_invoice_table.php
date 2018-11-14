@@ -14,7 +14,7 @@ class AddImportIdColumnToBookInvoiceTable extends Migration
     public function up()
     {
         Schema::table('book_invoice', function (Blueprint $table) {
-            $table->integer('import_id')->index();
+            $table->integer('import_id')->unsigned();
         });
     }
 
@@ -25,8 +25,6 @@ class AddImportIdColumnToBookInvoiceTable extends Migration
      */
     public function down()
     {
-        Schema::table('book_invoice', function (Blueprint $table) {
-            $table->integer('import_id')->unsigned();
-        });
+        
     }
 }

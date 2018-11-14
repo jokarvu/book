@@ -22,7 +22,7 @@
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Ngày tạo</th>
-                                <th scope="col">Cập nhật cuối</th>
+                                <th scope="col">Ngày sửa</th>
                                 <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>

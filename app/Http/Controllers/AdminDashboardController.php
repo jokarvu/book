@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Book;
 use App\User;
@@ -30,5 +31,14 @@ class AdminDashboardController extends Controller
             return Response::json(compact(['total_books', 'book_left', 'total_users', 'today_invoices', 'success_invoices', 'active_users', 'total_invoices', 'total_imports', 'total_categories', 'pending_invoices']), 200);
         }
         return Response::json(['message' => 'Bạn không có quyền truy cập trang này!'], 403);
+    }
+
+    public function revenue()
+    {
+        $invoices = DB::table('invoices')->select('invoices.id', 'book_invoice.book_id', 'book_invoice.import_id', 'book_invoice.price as sell_price', 'book_invoice.quantity', 'book_import.price as import_price', 'sell_price - import_price as reveneu')
+                        ->join('book_invoice', 'invoices.id', '=', 'book_invoice.invoice_id')
+                        ->join('book_import', 'book_import.import_id', 'book_invoice.import_id')
+                        ->get();
+        return Response::json($invoices, 200);
     }
 }

@@ -77,9 +77,36 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
+					<div class="header-wrapicon2">
+						<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+
+						<!-- Header cart noti -->
+						<div class="header-cart header-dropdown">
+							<ul class="header-cart-wrapitem">
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đơn hàng
+										</a>
+									</div>
+								</li>
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đổi mật khẩu
+										</a>
+									</div>
+								</li>
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đăng xuất
+										</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<span class="linedivide1"></span>
 
@@ -147,9 +174,36 @@
 			<div class="btn-show-menu">
 				<!-- Header Icon mobile -->
 				<div class="header-icons-mobile">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
+					<div class="header-wrapicon2">
+						<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+
+						<!-- Header cart noti -->
+						<div class="header-cart header-dropdown">
+							<ul class="header-cart-wrapitem">
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đơn hàng
+										</a>
+									</div>
+								</li>
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đổi mật khẩu
+										</a>
+									</div>
+								</li>
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											Đăng xuất
+										</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<span class="linedivide2"></span>
 

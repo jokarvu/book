@@ -23,6 +23,7 @@ Route::resource('invoice', 'InvoiceController');
 Route::resource('role', 'RoleController');
 Route::resource('supplier', 'SupplierController');
 Route::get('dashboard', 'AdminDashboardController@counter');
+Route::get('revenue', 'AdminDashboardController@revenue');
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
