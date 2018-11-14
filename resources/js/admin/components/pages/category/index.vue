@@ -83,7 +83,7 @@
         mounted () {
             var app = this;
             // Get product data
-            axios.get('/category').then(function (json) {
+            axios.get('http://book.com/category').then(function (json) {
                 app.categories = json.data;
             }).catch(function (errors) {
                 ErrorHelper.error(errors);
@@ -98,7 +98,7 @@
         methods : {
             DeleteCategory (id) {
                 var app = this;
-                axios.delete('/category/' + id).then(json => {
+                axios.delete('http://book.com/category/' + id).then(json => {
                     toastr.success(json.data.message);
                     app.table.rows('#category-'+id).remove().draw(false);
                 }).catch(errors => {

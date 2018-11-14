@@ -207,7 +207,7 @@
             $('#sparkline8').sparkline(value, {type: 'bar', barColor: 'yellow'});
 
             // Counter
-            axios.get('/dashboard').then(json => {
+            axios.get('http://book.com/dashboard').then(json => {
                 app.counter = json.data;
             }).catch(errors => {
                 ErrorHelper.error(errors);

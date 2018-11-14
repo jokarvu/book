@@ -156,7 +156,7 @@
             var self = this;
             var slug = self.$route.params.slug;
             // Get product data
-            axios.get('/category/' + slug).then(json => {
+            axios.get('http://book.com/category/' + slug).then(json => {
                 self.books = json.data.books;
                 self.category = json.data.category;
                 self.children = json.data.children;
@@ -181,7 +181,7 @@
         methods : {
             DeleteBook (id) {
                 var app = this;
-                axios.delete('/book/' + id).then(response => {
+                axios.delete('http://book.com/book/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#book-'+id).remove().draw(false);
                 }).catch(errors => {
@@ -190,7 +190,7 @@
             },
             DeleteCategory (id) {
                 var app = this;
-                axios.delete('/category/' + id).then(response => {
+                axios.delete('http://book.com/category/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#category-'+id).remove().draw(false);
                 }).catch(errors => {

@@ -96,7 +96,7 @@ a<template>
         created () {
             var app = this;
             var slug = app.$route.params.slug;
-            axios.get('/book/' + slug + '/edit').then(function (json) {
+            axios.get('http://book.com/book/' + slug + '/edit').then(function (json) {
                 app.categories = json.data.categories;
                 app.book  = json.data.book;
             }).catch(function (errors) {
@@ -123,7 +123,7 @@ a<template>
                         toastr.error('Có lỗi xảy ra');
                     } else {
                         console.log(form.getAll('name'));
-                        axios.post('/book/' + slug, form).then(function (json) {
+                        axios.post('http://book.com/book/' + slug, form).then(function (json) {
                             toastr.success(json.data.message);
                             app.$router.push({path: '/admin/book'});
                         }).catch(errors => {

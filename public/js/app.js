@@ -60696,9 +60696,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         login: function login() {
             var app = this;
-            axios.post('/auth/login', app.user).then(function (response) {
+            axios.post('http://book.com/auth/login', app.user).then(function (response) {
                 toastr.success(response.data.message);
-                axios.get('/auth/admin').then(function (response) {
+                axios.get('http://book.com/auth/admin').then(function (response) {
                     app.$router.push("/admin");
                 }).catch(function (errors) {
                     app.$router.push("/");
@@ -61285,7 +61285,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __WEBPACK_IMPORTED_MODULE_0_jquery__('#sparkline8').sparkline(value, { type: 'bar', barColor: 'yellow' });
 
         // Counter
-        axios.get('/dashboard').then(function (json) {
+        axios.get('http://book.com/dashboard').then(function (json) {
             app.counter = json.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
@@ -64917,7 +64917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         // Get product data
-        axios.get("/user").then(function (json) {
+        axios.get("http://book.com/user").then(function (json) {
             app.users = json.data;
         }).catch(function (json) {
             ErrorHelper.error(errors);
@@ -64933,7 +64933,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteUser: function DeleteUser(id) {
             var app = this;
-            axios.delete('/user/' + id).then(function (response) {
+            axios.delete('http://book.com/user/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#user-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -65884,7 +65884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/user/' + slug + '/edit').then(function (json) {
+        axios.get('http://book.com/user/' + slug + '/edit').then(function (json) {
             app.roles = json.data.roles;
             app.user = json.data.user;
         }).catch(function (errors) {
@@ -65902,7 +65902,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     // validation failed
                     toastr.error('Validation failed. Invalid input!');
                 } else {
-                    axios.put('/user/' + slug, app.user).then(function (json) {
+                    axios.put('http://book.com/user/' + slug, app.user).then(function (json) {
                         toastr.success(json.data.message);
                         // console.log("OK");
                         app.$router.push({ path: '/admin/user' });
@@ -66323,7 +66323,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/user/' + slug).then(function (json) {
+        axios.get('http://book.com/user/' + slug).then(function (json) {
             app.user = json.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
@@ -66539,7 +66539,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         // Get product data
-        axios.get("/book").then(function (json) {
+        axios.get("http://book.com/book").then(function (json) {
             app.books = json.data;
         }).catch(function (json) {
             ErrorHelper.error(errors);
@@ -66555,7 +66555,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteBook: function DeleteBook(id) {
             var app = this;
-            axios.delete('/book/' + id).then(function (response) {
+            axios.delete('http://book.com/book/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#book-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -66999,7 +66999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var app = this;
-        axios.get('/book/create').then(function (json) {
+        axios.get('http://book.com/book/create').then(function (json) {
             app.categories = json.data;
         }).catch(function (errors) {
             // console.log(json);
@@ -67021,7 +67021,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     // validation failed
                     toastr.error('Có lỗi xảy ra');
                 } else {
-                    axios.post('/book', form).then(function (json) {
+                    axios.post('http://book.com/book', form).then(function (json) {
                         toastr.success(json.data.message);
                         app.$router.push({ path: '/admin/book' });
                     }).catch(function (errors) {
@@ -67555,7 +67555,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/book/' + slug).then(function (json) {
+        axios.get('http://book.com/book/' + slug).then(function (json) {
             app.book = json.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
@@ -67800,7 +67800,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/book/' + slug + '/edit').then(function (json) {
+        axios.get('http://book.com/book/' + slug + '/edit').then(function (json) {
             app.categories = json.data.categories;
             app.book = json.data.book;
         }).catch(function (errors) {
@@ -67828,7 +67828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     toastr.error('Có lỗi xảy ra');
                 } else {
                     console.log(form.getAll('name'));
-                    axios.post('/book/' + slug, form).then(function (json) {
+                    axios.post('http://book.com/book/' + slug, form).then(function (json) {
                         toastr.success(json.data.message);
                         app.$router.push({ path: '/admin/book' });
                     }).catch(function (errors) {
@@ -68457,7 +68457,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         // Get product data
-        axios.get('/category').then(function (json) {
+        axios.get('http://book.com/category').then(function (json) {
             app.categories = json.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
@@ -68473,7 +68473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteCategory: function DeleteCategory(id) {
             var app = this;
-            axios.delete('/category/' + id).then(function (json) {
+            axios.delete('http://book.com/category/' + id).then(function (json) {
                 toastr.success(json.data.message);
                 app.table.rows('#category-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -68896,7 +68896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var app = this;
-        axios.get('/category/create').then(function (json) {
+        axios.get('http://book.com/category/create').then(function (json) {
             app.categories = json.data;
         }).catch(function (errors) {
             console.log(json);
@@ -68911,7 +68911,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (!result) {
                     toasr.error('Please check your post. A required field is empty!');
                 } else {
-                    axios.post('/category', app.category).then(function (json) {
+                    axios.post('http://book.com/category', app.category).then(function (json) {
                         toastr.success(json.data.message);
                         app.$router.go(-1);
                     }).catch(function (errors) {
@@ -69597,7 +69597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var self = this;
         var slug = self.$route.params.slug;
         // Get product data
-        axios.get('/category/' + slug).then(function (json) {
+        axios.get('http://book.com/category/' + slug).then(function (json) {
             self.books = json.data.books;
             self.category = json.data.category;
             self.children = json.data.children;
@@ -69623,7 +69623,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteBook: function DeleteBook(id) {
             var app = this;
-            axios.delete('/book/' + id).then(function (response) {
+            axios.delete('http://book.com/book/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#book-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -69632,7 +69632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         DeleteCategory: function DeleteCategory(id) {
             var app = this;
-            axios.delete('/category/' + id).then(function (response) {
+            axios.delete('http://book.com/category/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#category-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -70314,7 +70314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/category/' + slug + '/edit').then(function (json) {
+        axios.get('http://book.com/category/' + slug + '/edit').then(function (json) {
             app.categories = json.data.categories;
             app.category = json.data.category;
         }).catch(function (errors) {
@@ -70331,7 +70331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (!result) {
                     toasr.error('Please check your post. A required field is empty!');
                 } else {
-                    axios.put('/category/' + slug, app.category).then(function (json) {
+                    axios.put('http://book.com/category/' + slug, app.category).then(function (json) {
                         toastr.success(json.data.message);
                         app.$router.go(-1);
                     }).catch(function (errors) {
@@ -70756,7 +70756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         // Get product data
-        axios.get("/invoice").then(function (json) {
+        axios.get("http://book.com/invoice").then(function (json) {
             app.invoices = json.data;
         }).catch(function (json) {
             ErrorHelper.error(errors);
@@ -70772,7 +70772,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteInvoice: function DeleteInvoice(id) {
             var app = this;
-            axios.delete('/invoice/' + id).then(function (response) {
+            axios.delete('http://book.com/invoice/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#invoice-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -71219,7 +71219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var id = app.$route.params.id;
-        axios.get('/invoice/' + id).then(function (json) {
+        axios.get('http://book.com/invoice/' + id).then(function (json) {
             app.invoice = json.data;
             app.invoice.books.forEach(function (element) {
                 app.subtotal += element.price * element.quantity;
@@ -72074,7 +72074,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         DeleteInvoice: function DeleteInvoice(id) {
             var app = this;
-            axios.delete('/import/' + id).then(function (response) {
+            axios.delete('http://book.com/import/' + id).then(function (response) {
                 toastr.success(response.data.message);
                 app.table.rows('#import-' + id).remove().draw(false);
             }).catch(function (errors) {
@@ -73055,7 +73055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var app = this;
         var id = app.$route.params.id;
-        axios.get('/import/' + id).then(function (json) {
+        axios.get('http://book.com/import/' + id).then(function (json) {
             app.importer = json.data;
             app.importer.books.forEach(function (book) {
                 app.total_quantity += book.quantity;
@@ -75160,12 +75160,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		// Get sach
 		var app = this;
-		axios.get('/book/popular').then(function (repsonse) {
+		axios.get('http://book.com/book/popular').then(function (repsonse) {
 			app.popular_books = repsonse.data;
 		}).catch(function (errors) {
 			ErrorHelper.error(errors);
 		});
-		axios.get('/book/latest').then(function (response) {
+		axios.get('http://book.com/book/latest').then(function (response) {
 			app.latest_books = response.data;
 		}).catch(function (errors) {
 			ErrorHelper.error(errors);
@@ -79406,7 +79406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/category/' + slug).then(function (response) {
+        axios.get('http://book.com/category/' + slug).then(function (response) {
             app.books = response.data.books;
             app.category = response.data.category;
             app.categories = response.data.categories;
@@ -127147,7 +127147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/auth/current').then(function (response) {
+        axios.get('http://book.com/auth/current').then(function (response) {
             _this.user = response.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
@@ -127158,7 +127158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         logout: function logout() {
             var _this2 = this;
 
-            axios.get('/auth/logout').then(function (response) {
+            axios.get('http://book.com/auth/logout').then(function (response) {
                 return _this2.$router.push({ path: '/' });
             }).catch(function (errors) {
                 ErrorHelper.error(errors);
@@ -128031,7 +128031,7 @@ var render = function() {
                   _c("i", { staticClass: "c-pink-500 ti-calendar" })
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "title" }, [_vm._v("Books")])
+                _c("span", { staticClass: "title" }, [_vm._v("Quản Lý Sách")])
               ]
             )
           ],
@@ -128050,7 +128050,9 @@ var render = function() {
                   _c("i", { staticClass: "c-red-500 ti-user" })
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "title" }, [_vm._v("Users")])
+                _c("span", { staticClass: "title" }, [
+                  _vm._v("Quản Lý Người Dùng")
+                ])
               ]
             )
           ],
@@ -128069,7 +128071,9 @@ var render = function() {
                   _c("i", { staticClass: "c-orange-500 ti-comment-alt" })
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "title" }, [_vm._v("Invoices")])
+                _c("span", { staticClass: "title" }, [
+                  _vm._v("Quản Lý Hóa Đơn")
+                ])
               ]
             )
           ],
@@ -128088,7 +128092,9 @@ var render = function() {
                   _c("i", { staticClass: "c-indigo-500 ti-tag" })
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "title" }, [_vm._v("Imports")])
+                _c("span", { staticClass: "title" }, [
+                  _vm._v("Quản Lý Nhập Hàng")
+                ])
               ]
             )
           ],
@@ -128107,45 +128113,14 @@ var render = function() {
                   _c("i", { staticClass: "c-green-500 ti-view-list-alt" })
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "title" }, [_vm._v("Categories")])
+                _c("span", { staticClass: "title" }, [
+                  _vm._v("Quản Lý Danh Mục")
+                ])
               ]
             )
           ],
           1
-        ),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item dropdown" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c("ul", { staticClass: "dropdown-menu" }, [
-            _c(
-              "li",
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "sidebar-link",
-                    attrs: { to: "/admin/product/create" }
-                  },
-                  [_vm._v("New Product")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(4)
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(5),
-        _vm._v(" "),
-        _vm._m(6),
-        _vm._v(" "),
-        _vm._m(7)
+        )
       ])
     ])
   ])
@@ -128179,224 +128154,6 @@ var staticRenderFns = [
           _c("div", { staticClass: "mobile-toggle sidebar-toggle" }, [
             _c("a", { staticClass: "td-n", attrs: { href: "" } }, [
               _c("i", { staticClass: "ti-arrow-circle-left" })
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "sidebar-link", attrs: { href: "forms.html" } }, [
-        _c("span", { staticClass: "icon-holder" }, [
-          _c("i", { staticClass: "c-light-blue-500 ti-pencil" })
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "title" }, [_vm._v("Forms")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c("a", { staticClass: "sidebar-link", attrs: { href: "ui.html" } }, [
-        _c("span", { staticClass: "icon-holder" }, [
-          _c("i", { staticClass: "c-pink-500 ti-palette" })
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "title" }, [_vm._v("UI Elements")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown-toggle",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [
-        _c("span", { staticClass: "icon-holder" }, [
-          _c("i", { staticClass: "c-orange-500 ti-layout-list-thumb" })
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "title" }, [_vm._v("Tables")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "arrow" }, [
-          _c("i", { staticClass: "ti-angle-right" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c(
-        "a",
-        { staticClass: "sidebar-link", attrs: { href: "datatable.html" } },
-        [_vm._v("Data Table")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "dropdown-toggle",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [
-          _c("span", { staticClass: "icon-holder" }, [
-            _c("i", { staticClass: "c-purple-500 ti-map" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "title" }, [_vm._v("Maps")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "arrow" }, [
-            _c("i", { staticClass: "ti-angle-right" })
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "dropdown-menu" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "google-maps.html" } }, [
-            _vm._v("Google Map")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "vector-maps.html" } }, [
-            _vm._v("Vector Map")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "dropdown-toggle",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [
-          _c("span", { staticClass: "icon-holder" }, [
-            _c("i", { staticClass: "c-red-500 ti-files" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "title" }, [_vm._v("Pages")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "arrow" }, [
-            _c("i", { staticClass: "ti-angle-right" })
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "dropdown-menu" }, [
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "sidebar-link", attrs: { href: "404.html" } },
-            [_vm._v("404")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "sidebar-link", attrs: { href: "500.html" } },
-            [_vm._v("500")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "sidebar-link", attrs: { href: "signin.html" } },
-            [_vm._v("Sign In")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "sidebar-link", attrs: { href: "signup.html" } },
-            [_vm._v("Sign Up")]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "dropdown-toggle",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [
-          _c("span", { staticClass: "icon-holder" }, [
-            _c("i", { staticClass: "c-teal-500 ti-view-list-alt" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "title" }, [_vm._v("Multiple Levels")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "arrow" }, [
-            _c("i", { staticClass: "ti-angle-right" })
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "dropdown-menu" }, [
-        _c("li", { staticClass: "nav-item dropdown" }, [
-          _c("a", { attrs: { href: "javascript:void(0);" } }, [
-            _c("span", [_vm._v("Menu Item")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item dropdown" }, [
-          _c("a", { attrs: { href: "javascript:void(0);" } }, [
-            _c("span", [_vm._v("Menu Item")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "arrow" }, [
-              _c("i", { staticClass: "ti-angle-right" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "dropdown-menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                _vm._v("Menu Item")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                _vm._v("Menu Item")
-              ])
             ])
           ])
         ])

@@ -65,7 +65,7 @@
         },
         mounted () {
             var app = this;
-            axios.get('/category/create').then(function (json) {
+            axios.get('http://book.com/category/create').then(function (json) {
                 app.categories = json.data;
             }).catch(function (errors) {
                 console.log(json);
@@ -79,7 +79,7 @@
                     if (!result) {
                         toasr.error('Please check your post. A required field is empty!');
                     } else {
-                        axios.post('/category', app.category).then(json => {
+                        axios.post('http://book.com/category', app.category).then(json => {
                             toastr.success(json.data.message);
                             app.$router.go(-1);
                         }).catch(errors => {

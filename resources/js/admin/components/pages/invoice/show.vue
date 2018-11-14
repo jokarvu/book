@@ -94,7 +94,7 @@ a<template>
         mounted () {
             var app = this;
             var id = app.$route.params.id;
-            axios.get('/invoice/' + id).then(function (json) {
+            axios.get('http://book.com/invoice/' + id).then(function (json) {
                 app.invoice = json.data;
                 app.invoice.books.forEach(element => {
                     app.subtotal += element.price *  element.quantity;

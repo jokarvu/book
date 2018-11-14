@@ -44,7 +44,7 @@
         mounted () {
             var app = this;
             var slug = app.$route.params.slug;
-            axios.get('/book/' + slug).then(function (json) {
+            axios.get('http://book.com/book/' + slug).then(function (json) {
                 app.book = json.data;
             }).catch(function (errors) {
                 ErrorHelper.error(errors);

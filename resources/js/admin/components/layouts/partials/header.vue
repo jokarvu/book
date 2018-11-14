@@ -194,7 +194,7 @@
            }
         },
         mounted () {
-           axios.get('/auth/current').then(response => {
+           axios.get('http://book.com/auth/current').then(response => {
                this.user = response.data;
            }).catch(errors => {
                ErrorHelper.error(errors);
@@ -202,7 +202,7 @@
         },
         methods: {
             logout () {
-                axios.get('/auth/logout').then(response => {
+                axios.get('http://book.com/auth/logout').then(response => {
                     return this.$router.push({path: '/'});
                 }).catch(errors => {
                     ErrorHelper.error(errors);

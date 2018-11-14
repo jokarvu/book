@@ -86,7 +86,7 @@ import * as $ from "jquery";
         mounted() {
             var app = this;
             // Get product data
-            axios.get("/invoice").then(function(json) {
+            axios.get("http://book.com/invoice").then(function(json) {
                 app.invoices = json.data;
             }).catch(function(json) {
                 ErrorHelper.error(errors);
@@ -101,7 +101,7 @@ import * as $ from "jquery";
         methods : {
             DeleteInvoice (id) {
                 var app = this;
-                axios.delete('/invoice/' + id).then(response => {
+                axios.delete('http://book.com/invoice/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#invoice-'+id).remove().draw(false);
                 }).catch(errors => {

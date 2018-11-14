@@ -66,7 +66,7 @@
         mounted () {
             var app = this;
             var slug = app.$route.params.slug;
-            axios.get('/category/' + slug + '/edit').then(function (json) {
+            axios.get('http://book.com/category/' + slug + '/edit').then(function (json) {
                 app.categories = json.data.categories;
                 app.category = json.data.category;
             }).catch(function (errors) {
@@ -82,7 +82,7 @@
                     if (!result) {
                         toasr.error('Please check your post. A required field is empty!');
                     } else {
-                        axios.put('/category/' + slug, app.category).then(json => {
+                        axios.put('http://book.com/category/' + slug, app.category).then(json => {
                             toastr.success(json.data.message);
                             app.$router.go(-1);
                         }).catch(errors => {

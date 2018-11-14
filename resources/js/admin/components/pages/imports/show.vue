@@ -81,7 +81,7 @@ a<template>
         mounted () {
             var app = this;
             var id = app.$route.params.id;
-            axios.get('/import/' + id).then(function (json) {
+            axios.get('http://book.com/import/' + id).then(function (json) {
                 app.importer = json.data;
                 app.importer.books.forEach(book => {
                     app.total_quantity += book.quantity;

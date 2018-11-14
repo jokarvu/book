@@ -84,7 +84,7 @@
         mounted() {
             var app = this;
             // Get product data
-            axios.get("/book").then(function(json) {
+            axios.get("http://book.com/book").then(function(json) {
                 app.books = json.data;
             }).catch(function(json) {
                 ErrorHelper.error(errors);
@@ -99,7 +99,7 @@
         methods : {
             DeleteBook (id) {
                 var app = this;
-                axios.delete('/book/' + id).then(response => {
+                axios.delete('http://book.com/book/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#book-'+id).remove().draw(false);
                 }).catch(errors => {

@@ -89,7 +89,7 @@ import * as $ from "jquery";
         methods : {
             DeleteInvoice (id) {
                 var app = this;
-                axios.delete('/import/' + id).then(response => {
+                axios.delete('http://book.com/import/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#import-'+id).remove().draw(false);
                 }).catch(errors => {

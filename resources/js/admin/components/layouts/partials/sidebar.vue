@@ -43,7 +43,7 @@
                         <span class="icon-holder">
                           <i class="c-pink-500 ti-calendar"></i>
                         </span>
-                        <span class="title">Books</span>
+                        <span class="title">Quản Lý Sách</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
@@ -51,7 +51,7 @@
                         <span class="icon-holder">
                           <i class="c-red-500 ti-user"></i>
                         </span>
-                        <span class="title">Users</span>
+                        <span class="title">Quản Lý Người Dùng</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
@@ -59,7 +59,7 @@
                         <span class="icon-holder">
                           <i class="c-orange-500 ti-comment-alt"></i>
                         </span>
-                        <span class="title">Invoices</span>
+                        <span class="title">Quản Lý Hóa Đơn</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
@@ -67,7 +67,7 @@
                         <span class="icon-holder">
                           <i class="c-indigo-500 ti-tag"></i>
                         </span>
-                        <span class="title">Imports</span>
+                        <span class="title">Quản Lý Nhập Hàng</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
@@ -75,34 +75,34 @@
                         <span class="icon-holder">
                           <i class="c-green-500 ti-view-list-alt"></i>
                         </span>
-                        <span class="title">Categories</span>
+                        <span class="title">Quản Lý Danh Mục</span>
                     </router-link>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class='sidebar-link' href="forms.html">
-                <span class="icon-holder">
-                  <i class="c-light-blue-500 ti-pencil"></i>
-                </span>
+                    <span class="icon-holder">
+                    <i class="c-light-blue-500 ti-pencil"></i>
+                    </span>
                         <span class="title">Forms</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="sidebar-link" href="ui.html">
-                <span class="icon-holder">
-                    <i class="c-pink-500 ti-palette"></i>
-                  </span>
+                    <span class="icon-holder">
+                        <i class="c-pink-500 ti-palette"></i>
+                    </span>
                         <span class="title">UI Elements</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                  <i class="c-orange-500 ti-layout-list-thumb"></i>
-                </span>
-                        <span class="title">Tables</span>
-                        <span class="arrow">
-                  <i class="ti-angle-right"></i>
-                </span>
+                        <span class="icon-holder">
+                        <i class="c-orange-500 ti-layout-list-thumb"></i>
+                        </span>
+                            <span class="title">Tables</span>
+                            <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                        </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -115,13 +115,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                    <i class="c-purple-500 ti-map"></i>
-                  </span>
+                    <span class="icon-holder">
+                        <i class="c-purple-500 ti-map"></i>
+                    </span>
                         <span class="title">Maps</span>
                         <span class="arrow">
                     <i class="ti-angle-right"></i>
-                  </span>
+                    </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -134,13 +134,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                    <i class="c-red-500 ti-files"></i>
-                  </span>
+                    <span class="icon-holder">
+                        <i class="c-red-500 ti-files"></i>
+                    </span>
                         <span class="title">Pages</span>
                         <span class="arrow">
                     <i class="ti-angle-right"></i>
-                  </span>
+                    </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -159,13 +159,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                  <i class="c-teal-500 ti-view-list-alt"></i>
-                </span>
+                    <span class="icon-holder">
+                    <i class="c-teal-500 ti-view-list-alt"></i>
+                    </span>
                         <span class="title">Multiple Levels</span>
                         <span class="arrow">
                   <i class="ti-angle-right"></i>
-                </span>
+                    </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="nav-item dropdown">
@@ -190,7 +190,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

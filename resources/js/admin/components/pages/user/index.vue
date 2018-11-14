@@ -84,7 +84,7 @@ import * as $ from "jquery";
         mounted() {
             var app = this;
             // Get product data
-            axios.get("/user").then(function(json) {
+            axios.get("http://book.com/user").then(function(json) {
                 app.users = json.data;
             }).catch(function(json) {
                 ErrorHelper.error(errors);
@@ -99,7 +99,7 @@ import * as $ from "jquery";
         methods : {
             DeleteUser (id) {
                 var app = this;
-                axios.delete('/user/' + id).then(response => {
+                axios.delete('http://book.com/user/' + id).then(response => {
                     toastr.success(response.data.message);
                     app.table.rows('#user-'+id).remove().draw(false);
                 }).catch(errors => {

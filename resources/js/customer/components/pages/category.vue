@@ -163,7 +163,7 @@ export default {
     created () {
         var app = this;
         var slug = app.$route.params.slug;
-        axios.get('/category/' + slug).then(response => {
+        axios.get('http://book.com/category/' + slug).then(response => {
             app.books = response.data.books;
             app.category = response.data.category;
             app.categories = response.data.categories;

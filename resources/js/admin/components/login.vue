@@ -51,9 +51,9 @@
         methods: {
             login: function () {
                 var app = this;
-                axios.post('/auth/login', app.user).then(response => {
+                axios.post('http://book.com/auth/login', app.user).then(response => {
                     toastr.success(response.data.message);
-                    axios.get('/auth/admin').then(response => {
+                    axios.get('http://book.com/auth/admin').then(response => {
                         app.$router.push("/admin");
                     }).catch(errors => {
                         app.$router.push("/");

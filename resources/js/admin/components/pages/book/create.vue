@@ -87,7 +87,7 @@ a<template>
         },
         mounted () {
             var app = this;
-            axios.get('/book/create').then(function (json) {
+            axios.get('http://book.com/book/create').then(function (json) {
                 app.categories = json.data;
             }).catch(function (errors) {
                 // console.log(json);
@@ -108,7 +108,7 @@ a<template>
                         // validation failed
                         toastr.error('Có lỗi xảy ra');
                     } else {
-                        axios.post('/book', form).then(function (json) {
+                        axios.post('http://book.com/book', form).then(function (json) {
                             toastr.success(json.data.message);
                             app.$router.push({path: '/admin/book'});
                         }).catch(errors => {

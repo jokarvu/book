@@ -266,12 +266,12 @@ export default {
 	mounted () {
 		// Get sach
 		var app = this;
-		axios.get('/book/popular').then(repsonse => {
+		axios.get('http://book.com/book/popular').then(repsonse => {
 			app.popular_books = repsonse.data;
 		}).catch(errors => {
 			ErrorHelper.error(errors);
 		});
-		axios.get('/book/latest').then(response => {
+		axios.get('http://book.com/book/latest').then(response => {
 			app.latest_books = response.data;
 		}).catch(errors => {
 			ErrorHelper.error(errors);

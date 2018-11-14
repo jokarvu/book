@@ -34,7 +34,7 @@ a<template>
         mounted () {
             var app = this;
             var slug = app.$route.params.slug;
-            axios.get('/user/' + slug).then(function (json) {
+            axios.get('http://book.com/user/' + slug).then(function (json) {
                 app.user = json.data;
             }).catch(function (errors) {
                 ErrorHelper.error(errors);
