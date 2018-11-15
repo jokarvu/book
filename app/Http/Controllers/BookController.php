@@ -190,7 +190,7 @@ class BookController extends Controller
     }
 
     public function popular() {
-        $books = Book::select('name', 'slug', 'quantity', 'quantity_left', 'id', 'price')->orderByRaw('quantity - quantity_left DESC')->take(8)->get();
+        $books = Book::with('category:name,id')->orderByRaw('quantity - quantity_left DESC')->take(8)->get();
         return Response::json($books, 200);
     }
 }

@@ -61268,10 +61268,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 today_invoices: 0,
                 total_imports: 0,
                 total_invoices: 0
-            }
+            },
+            popular_books: []
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         var app = this;
         // Mini chart dashboard counter
         var value = [0, 5, 6, 10, 9, 12, 4, 9];
@@ -61287,6 +61290,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // Counter
         axios.get('http://book.com/dashboard').then(function (json) {
             app.counter = json.data;
+        }).catch(function (errors) {
+            ErrorHelper.error(errors);
+        });
+        // Popular book
+        axios.get('http://book.com/book/popular').then(function (response) {
+            _this.popular_books = response.data;
         }).catch(function (errors) {
             ErrorHelper.error(errors);
         });
@@ -64566,7 +64575,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-9" }, [
           _c("div", { staticClass: "bgc-white bd bdrs-3 p-20 mB-20" }, [
             _c("h4", { staticClass: "c-grey-900 mB-10" }, [
-              _vm._v("Popular Posts")
+              _vm._v("Sách bán chạy nhất")
             ]),
             _vm._v(" "),
             _c("h6", { staticClass: "mB-20" }, [
@@ -64577,17 +64586,17 @@ var render = function() {
               "table",
               {
                 staticClass: "table table-striped table-bordered",
-                attrs: { id: "popular-posts", cellspacing: "0", width: "100%" }
+                attrs: { id: "popular-book", cellspacing: "0", width: "100%" }
               },
               [
                 _vm._m(16),
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.popular_posts, function(post) {
+                  _vm._l(_vm.popular_books, function(book) {
                     return _c(
                       "tr",
-                      { key: post.id, attrs: { id: "post-" + post.id } },
+                      { key: book.id, attrs: { id: "book-" + book.id } },
                       [
                         _c(
                           "th",
@@ -64595,17 +64604,17 @@ var render = function() {
                             staticClass: "text-center",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(post.id))]
+                          [_vm._v(_vm._s(book.id))]
                         ),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(post.heading))]),
+                        _c("td", [_vm._v(_vm._s(book.name))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(post.category.name))]),
+                        _c("td", [_vm._v(_vm._s(book.category.name))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(post.body))]),
+                        _c("td", [_vm._v(_vm._s(book.sold))]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-center" }, [
-                          _vm._v(_vm._s(post.views))
+                          _vm._v(_vm._s(book.created_at))
                         ])
                       ]
                     )
@@ -64756,13 +64765,13 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#ID")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Heading")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tên")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Danh mục")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Đã bán")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Views")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Đã tạo")])
       ])
     ])
   }
@@ -65356,7 +65365,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var app = this;
-        axios.get('/user/create').then(function (json) {
+        axios.get('http://book.com/user/create').then(function (json) {
             app.roles = json.data;
         }).catch(function (errors) {
             // console.log(json);
@@ -65373,7 +65382,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     // validation failed
                     toastr.error('Validation failed. Invalid input!');
                 } else {
-                    axios.post('/user', app.user).then(function (json) {
+                    axios.post('http://book.com/user', app.user).then(function (json) {
                         toastr.success(json.data.message);
                         // console.log("OK");
                         app.$router.push({ path: '/admin/user' });
@@ -73730,6 +73739,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -73738,12 +73753,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			carts: [],
 			cart_length: 0,
 			total: 0,
-			user: null
+			user: null,
+			categories: []
 		};
 	},
 	created: function created() {
 		var _this = this;
 
+		axios.get('http://book.com/category').then(function (response) {
+			_this.categories = response.data;
+		}).catch(function (errors) {
+			ErrorHelper.error(errors);
+		});
 		axios.get('http://book.com/auth/current').then(function (response) {
 			_this.user = response.data;
 		}).catch(function (errors) {
@@ -73824,7 +73845,39 @@ var render = function() {
       _c("div", { staticClass: "wrap_header" }, [
         _vm._m(1),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "wrap_menu" }, [
+          _c("nav", { staticClass: "menu" }, [
+            _c("ul", { staticClass: "main_menu" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { attrs: { href: "product.html" } }, [
+                  _vm._v("Category")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  { staticClass: "sub_menu" },
+                  _vm._l(_vm.categories, function(category) {
+                    return _c("li", { key: category.id }, [
+                      _c("a", { attrs: { href: "/" + category.slug } }, [
+                        _vm._v(_vm._s(category.name))
+                      ])
+                    ])
+                  })
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6)
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "header-icons" }, [
           _c("div", { staticClass: "header-wrapicon2" }, [
@@ -73833,12 +73886,12 @@ var render = function() {
               attrs: { src: "images/icons/icon-header-01.png", alt: "ICON" }
             }),
             _vm._v(" "),
-            _vm.user != null
-              ? _c("div", { staticClass: "header-cart header-dropdown" }, [
-                  _c("ul", { staticClass: "header-cart-wrapitem" }, [
-                    _vm._m(3),
+            _c("div", { staticClass: "header-cart header-dropdown" }, [
+              _vm.user != null
+                ? _c("ul", { staticClass: "header-cart-wrapitem" }, [
+                    _vm._m(7),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("li", { staticClass: "header-cart-item" }, [
                       _c("div", { staticClass: "header-cart-item-txt" }, [
@@ -73862,8 +73915,8 @@ var render = function() {
                       ])
                     ])
                   ])
-                ])
-              : _vm._e()
+                : _c("ul", { staticClass: "header-cart-wrapitem" }, [_vm._m(9)])
+            ])
           ]),
           _vm._v(" "),
           _c("span", { staticClass: "linedivide1" }),
@@ -73988,7 +74041,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(10)
               ])
             ])
           ])
@@ -73997,7 +74050,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "wrap_header_mobile" }, [
-      _vm._m(6),
+      _vm._m(11),
       _vm._v(" "),
       _c("div", { staticClass: "btn-show-menu" }, [
         _c("div", { staticClass: "header-icons-mobile" }, [
@@ -74010,9 +74063,9 @@ var render = function() {
             _vm.user != null
               ? _c("div", { staticClass: "header-cart header-dropdown" }, [
                   _c("ul", { staticClass: "header-cart-wrapitem" }, [
-                    _vm._m(7),
+                    _vm._m(12),
                     _vm._v(" "),
-                    _vm._m(8),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("li", { staticClass: "header-cart-item" }, [
                       _c("div", { staticClass: "header-cart-item-txt" }, [
@@ -74129,17 +74182,17 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(9)
+                _vm._m(14)
               ])
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(10)
+        _vm._m(15)
       ])
     ]),
     _vm._v(" "),
-    _vm._m(11)
+    _vm._m(16)
   ])
 }
 var staticRenderFns = [
@@ -74212,58 +74265,40 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap_menu" }, [
-      _c("nav", { staticClass: "menu" }, [
-        _c("ul", { staticClass: "main_menu" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "index.html" } }, [_vm._v("Home")]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "sub_menu" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "index.html" } }, [
-                  _vm._v("Homepage V1")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "home-02.html" } }, [
-                  _vm._v("Homepage V2")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "home-03.html" } }, [
-                  _vm._v("Homepage V3")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "product.html" } }, [_vm._v("Shop")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "sale-noti" }, [
-            _c("a", { attrs: { href: "product.html" } }, [_vm._v("Sale")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "cart.html" } }, [_vm._v("Features")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "blog.html" } }, [_vm._v("Blog")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "about.html" } }, [_vm._v("About")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "contact.html" } }, [_vm._v("Contact")])
-          ])
-        ])
-      ])
+    return _c("li", [
+      _c("a", { attrs: { href: "index.html" } }, [_vm._v("Home")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "sale-noti" }, [
+      _c("a", { attrs: { href: "product.html" } }, [_vm._v("Sale")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "cart.html" } }, [_vm._v("Features")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "about.html" } }, [_vm._v("About")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "contact.html" } }, [_vm._v("Contact")])
     ])
   },
   function() {
@@ -74290,6 +74325,20 @@ var staticRenderFns = [
           "a",
           { staticClass: "header-cart-item-name", attrs: { href: "#" } },
           [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐổi mật khẩu\n\t\t\t\t\t\t\t\t\t\t")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "header-cart-item" }, [
+      _c("div", { staticClass: "header-cart-item-txt" }, [
+        _c(
+          "a",
+          { staticClass: "header-cart-item-name", attrs: { href: "/login" } },
+          [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\tĐăng nhập\n\t\t\t\t\t\t\t\t\t\t")]
         )
       ])
     ])
@@ -127156,10 +127205,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         logout: function logout() {
-            var _this2 = this;
-
             axios.get('http://book.com/auth/logout').then(function (response) {
-                return _this2.$router.push({ path: '/' });
+                return window.location.replace('/');
             }).catch(function (errors) {
                 ErrorHelper.error(errors);
             });

@@ -41,15 +41,15 @@
 						<ul class="main_menu">
 							<li>
 								<a href="index.html">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.html">Category</a>
+								<ul class="sub_menu">
+									<li v-for="category in categories" :key="category.id">
+										<a :href="'/' + category.slug">{{category.name}}</a>
+									</li>
+								</ul>
 							</li>
 
 							<li class="sale-noti">
@@ -58,10 +58,6 @@
 
 							<li>
 								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
 							</li>
 
 							<li>
@@ -81,8 +77,8 @@
 						<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 
 						<!-- Header cart noti -->
-						<div v-if="user != null" class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
+						<div class="header-cart header-dropdown">
+							<ul v-if="user != null" class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
@@ -101,6 +97,16 @@
 									<div class="header-cart-item-txt">
 										<a @click.prevent="logout()" class="header-cart-item-name">
 											Đăng xuất
+										</a>
+									</div>
+								</li>
+							</ul>
+
+							<ul v-else class="header-cart-wrapitem">
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<a href="/login" class="header-cart-item-name">
+											Đăng nhập
 										</a>
 									</div>
 								</li>
@@ -344,9 +350,15 @@
 				cart_length: 0,
 				total: 0,
 				user: null,
+				categories: []
 			}
 		},
 		created () {
+			axios.get('http://book.com/category').then(response => {
+				this.categories = response.data;
+			}).catch(errors => {
+				ErrorHelper.error(errors);
+			})
 			axios.get('http://book.com/auth/current').then(response => {
 				this.user = response.data;
 			}).catch(errors => {

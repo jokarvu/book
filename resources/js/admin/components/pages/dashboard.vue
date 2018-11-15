@@ -144,25 +144,25 @@
                 </div>
                 <div class="col-md-9">
                     <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                        <h4 class="c-grey-900 mB-10">Popular Posts</h4>
+                        <h4 class="c-grey-900 mB-10">Sách bán chạy nhất</h4>
                         <h6 class="mB-20">Five posts with highest view will be shown</h6>
-                        <table id="popular-posts" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <table id="popular-book" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th scope="col">#ID</th>
-                                    <th scope="col">Heading</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Body</th>
-                                    <th scope="col">Views</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Danh mục</th>
+                                    <th scope="col">Đã bán</th>
+                                    <th scope="col">Đã tạo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="post in popular_posts" :key="post.id" :id="'post-'+post.id">
-                                    <th scope="row" class="text-center">{{post.id}}</th>
-                                    <td>{{post.heading}}</td>
-                                    <td>{{post.category.name}}</td>
-                                    <td>{{post.body}}</td>
-                                    <td class="text-center">{{post.views}}</td>
+                                <tr v-for="book in popular_books" :key="book.id" :id="'book-'+book.id">
+                                    <th scope="row" class="text-center">{{book.id}}</th>
+                                    <td>{{book.name}}</td>
+                                    <td>{{book.category.name}}</td>
+                                    <td>{{book.sold}}</td>
+                                    <td class="text-center">{{book.created_at}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -190,7 +190,8 @@
                     today_invoices: 0,
                     total_imports: 0,
                     total_invoices: 0,
-                }
+                },
+                popular_books: []
             }
         },
         mounted () {
@@ -212,6 +213,12 @@
             }).catch(errors => {
                 ErrorHelper.error(errors);
             });
+            // Popular book
+            axios.get('http://book.com/book/popular').then(response => {
+                this.popular_books = response.data;
+            }).catch(errors => {
+                ErrorHelper.error(errors);
+            })
         },
         // updated () {
         //     var app = this;

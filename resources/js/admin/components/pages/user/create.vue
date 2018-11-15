@@ -76,7 +76,7 @@ a<template>
         },
         mounted () {
             var app = this;
-            axios.get('/user/create').then(function (json) {
+            axios.get('http://book.com/user/create').then(function (json) {
                 app.roles = json.data;
             }).catch(function (errors) {
                 // console.log(json);
@@ -92,7 +92,7 @@ a<template>
                         // validation failed
                         toastr.error('Validation failed. Invalid input!');
                     } else {
-                        axios.post('/user', app.user).then(function (json) {
+                        axios.post('http://book.com/user', app.user).then(function (json) {
                             toastr.success(json.data.message);
                             // console.log("OK");
                             app.$router.push({path: '/admin/user'});

@@ -203,7 +203,7 @@
         methods: {
             logout () {
                 axios.get('http://book.com/auth/logout').then(response => {
-                    return this.$router.push({path: '/'});
+                    return window.location.replace('/');
                 }).catch(errors => {
                     ErrorHelper.error(errors);
                 })
