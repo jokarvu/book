@@ -80067,7 +80067,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					ErrorHelper.error(errors2);
 				});
 			}).catch(function (errors) {
-				ErrorHelper.error(errors);
+				toastr.error("Bạn chưa đăng nhập!");
+				window.location.replace('http://book.com/login');
 			});
 		},
 		removeBookFromCart: function removeBookFromCart(book) {

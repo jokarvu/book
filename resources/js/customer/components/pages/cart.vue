@@ -183,7 +183,8 @@
 						ErrorHelper.error(errors2);
 					})
 				}).catch(errors => {
-					ErrorHelper.error(errors);
+					toastr.error("Bạn chưa đăng nhập!");
+					window.location.replace('http://book.com/login');
 				})
 			},
 			removeBookFromCart (book) {
