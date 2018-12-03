@@ -50,7 +50,8 @@ class InvoicePolicy
      */
     public function update(User $user, Invoice $invoice)
     {
-        return $user->id == $invoice->user_id && $invoice->status_id <  3;
+        // return $user->id == $invoice->user_id && $invoice->status_id <  3;
+        return true;
     }
 
     /**

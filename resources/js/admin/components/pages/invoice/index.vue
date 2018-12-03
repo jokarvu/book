@@ -18,11 +18,12 @@
                                 <th scope="col">#ID</th>
                                 <th scope="col">Người mua</th>
                                 <th scope="col">Tình trạng</th>
-                                <th scope="col">Phí vận chuyển</th>
+                                <th scope="col">Phí ship</th>
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Ngày sửa</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
@@ -39,8 +40,19 @@
                                 <td class="text-center">{{invoice.created_at}}</td>
                                 <td class="text-center">{{invoice.updated_at}}</td>
                                 <td class="text-center">
+                                    <button type="button" class="btn" :class="invoice.status_id == 1 ? 'btn-danger' : (invoice.status_id == 2 ? 'btn-warning' : 'btn-success')">{{invoice.status_id == 1 ? 'Đang chờ' : (invoice.status_id == 2 ? 'Xác nhận' : 'Thành công')}}</button>
+                                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" :class="invoice.status_id == 1 ? 'btn-danger' : (invoice.status_id == 2 ? 'btn-warning' : 'btn-success')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" @click.prevent="UpdateStatus(invoice.id, 1)">Đang chờ</a>
+                                        <a class="dropdown-item" @click.prevent="UpdateStatus(invoice.id, 2)">Xác nhận</a>
+                                        <a class="dropdown-item" @click.prevent="UpdateStatus(invoice.id, 3)">Thành công</a>
+                                    </div>
+                                </td>
+                                <td class="text-center">
                                     <router-link :to="{name: 'InvoiceShow', params: {id: invoice.id}}" class="btn btn-sm btn-success">Xem</router-link>
-                                    <router-link :to="{name: 'UserUpdate', params: {slug: invoice.id}}" class="btn btn-sm btn-info">Sửa</router-link>
+                                    <router-link :to="{name: 'InvoiceUpdate', params: {id: invoice.id}}" class="btn btn-sm btn-info">Sửa</router-link>
                                     <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" :data-target="'#invoicemodal-'+invoice.id">
                                         Xóa
                                     </button>
@@ -107,7 +119,20 @@ import * as $ from "jquery";
                 }).catch(errors => {
                     ErrorHelper.error(errors);
                 });
+            },
+            UpdateStatus(id, status_id) {
+                axios.put('http://book.com/invoice/' + id + '/status', {status_id: status_id}).then(response => {
+                    toastr.success(response.data.message);
+                    this.$router.push({path: '/admin/render'})
+                }).catch(errors => {
+                    ErrorHelper.error(errors);
+                })
             }
         }
     };
 </script>
+<style>
+    .dropdown-item {
+        cursor: pointer;
+    }
+</style>

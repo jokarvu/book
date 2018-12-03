@@ -16,10 +16,16 @@ class RoleController extends Controller
      */
     public function index()
     {
+        // Auth::user() là hàm trả về thông tin người dùng đang đăng nhập (nếu chưa đăng nhập trả về null) (tự có)
+        // Auth::user()->isAdmin() là hàm kiểm tra quyền admin (tệp app\User.php)
+        // Kiểm tra người dùng đã đăng nhập và là admin
         if (Auth::user() && Auth::user()->isAdmin()) {
+            // Lấy tất cả quyền (tệp app\Role)
             $roles = Role::all();
+            // Trả về tất cả các quyền
             return Response::json($roles, 200);
         }
+        // Nếu người dùng chưa đăng nhập hoặc không phải admin thì trả về lỗi
         return Response::json(['message' => 'Bạn không có quyền truy cập'], 403);
     }
 
@@ -30,6 +36,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        // Không cần đến nên trả về lỗi luôn
         return Response::json(['message' => 'Trang này không tồn tại'], 404);
     }
 
@@ -41,15 +48,22 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user() && Auth::user()->can('create', Role)) {
+        // Auth::user() là hàm trả về thông tin người dùng đang đăng nhập (nếu chưa đăng nhập trả về null) (tự có)
+        // Auth::user()->can('create', Role::class) là hàm kiếm tra nếu người dùng có quyền tạo role mới
+        if (Auth::user() && Auth::user()->can('create', Role::class)) {
+            // Lấy tên quyền cần tạo mới từ request của người dùng
             $data = $request->only('name');
+            // Tiến hành tạo người dùng
             try {
                 $roles = Role::create($data);
+                // Tạp thành công thì trả về thành công
                 return Response::json(['message' => 'Thêm quyền thành công'], 200);
             } catch (Exception $errors) {
+                // Gặp lỗi thông báo lỗi 
                 return Response::json(['message' => "Có lỗi xảy ra. Vui lòng thử lại sau"], 500);
             }
         }
+        // Nếu không có quyền truy cập thì thông báo lỗi
         return Response::json(['message' => 'Bạn không có quyền truy cấp'], 403);
     }
 
@@ -61,6 +75,7 @@ class RoleController extends Controller
      */
     public function show($slug)
     {
+        // Lấy 
         $role = Role::whereSlug($slug)->firstOrFail();
         if (Auth::user() && Auth::user()->can('view', $role)) {
             return Response::json($role, 200);

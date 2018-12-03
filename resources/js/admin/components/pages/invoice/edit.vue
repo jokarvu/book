@@ -3,26 +3,14 @@
         <div class="row gap-20">
             <div class="col-md-12">
                 <div class="bgc-white p-20 bd">
-                    <h4 class="c-grey-900 mB-20">Tạo hóa đơn</h4>
+                    <h4 class="c-grey-900 mB-20">Sửa hóa đơn</h4>
                     <div class="mT-30">
-                        <form class="container" @submit.prevent="addNewInvoice">
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <label>Người mua</label>
-                                    <select v-model="user_id" v-validate data-vv-rules="required" class="select_user form-control" :class="{'is-invalid': errors.has('user_id') }" name="user_id">
-                                        <option value="" disabled>None</option>
-                                        <option v-for="user in users" :key="user.id" :value="user.id">{{user.username}}</option>
-                                    </select>
-                                    <div class="form-control-feedback text-danger" v-show="errors.has('user_id')">
-                                        {{ errors.first('user_id') }}
-                                    </div>
-                                </div>
-                            </div>
+                        <form class="container" @submit.prevent="updateInvoice">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label>Sách</label>
-                                    <select data-vv-rules="required" id="select_book" class="form-control" :class="{'is-invalid': errors.has('book') }" name="book">
-                                        <option v-for="book in books" :key="book.id" :value="book.id">{{book.name}} | {{book.quantity_left}}</option>
+                                    <select data-vv-rules="required" id="select_book_updated" class="form-control" :class="{'is-invalid': errors.has('book') }" name="book">
+                                        <option v-for="book in books" :key="book.id" :value="book.id" :selected="book.selected ? 'selected' : ''">{{book.name}}</option>
                                     </select>
                                     <div class="form-control-feedback text-danger" v-show="errors.has('book')">
                                         {{ errors.first('book') }}
@@ -63,42 +51,64 @@
         data () {
             return {
                 books: [],
-                users: [],
                 user_id: '',
                 carts: [],
                 list_books_id: [] // Dung de loc nhung sach da duoc them
             }
         },
         created () {
-            axios.get('http://book.com/invoice/create').then(response => {
+            var id = this.$route.params.id;
+            var tmp_carts = [];
+            axios.get('http://book.com/invoice/' + id + '/edit').then(response => {
                 this.books = response.data.books;
-                this.users = response.data.users;
                 this.books.forEach(book => {
                     book.quantity = 1;
                 });
+                tmp_carts = response.data.invoice.books;
+                tmp_carts.forEach(book => {
+                    this.list_books_id.push(book.book_id.toString());
+                })
+                this.carts = this.books.filter(book => {
+                    return this.list_books_id.includes(book.id.toString());
+                })
+                this.carts.forEach(book => {
+                    if (this.list_books_id.includes(book.id.toString())) {
+                        book.selected = 1;
+                        tmp_carts.forEach(item => {
+                            if (book.id == item.book_id) {
+                                book.quantity = item.quantity;
+                            }
+                        })
+                    } else {
+                        book.selected = 0;
+                    }
+                })
             }).catch(errors => {
                 ErrorHelper.error(errors);
             });
         },
         mounted () {
             var app = this;
-            $('#select_book').select2({
+            $('#select_book_updated').select2({
                 multiple: true,
                 closeOnSelect: false,
                 matcher: this.matchCustom,
                 placeholder: 'Select books..'
             }).on('change', function () {
-                app.$emit('selected', $('#select_book').val());
+                app.$emit('updated_value', $('#select_book_updated').val());
             })
-            this.$on('selected', function (value) {
-                if (value.length > app.list_books_id.length) {
+            this.$on('updated_value', function (value) {
+                console.log(value);
+                console.log(app.list_books_id);
+                if (value.length >= app.list_books_id.length) {
                     var list = value.filter(element => {
-                        return !app.list_books_id.includes(element);
+                        return !app.list_books_id.includes(element.toString());
                     });
                     app.list_books_id = value;
                     var tmp = app.books.filter(book => {
                         return list.includes(book.id.toString());
                     })
+                    tmp[0].selected = 1;
                     this.carts.push(tmp[0]);
                 } else {
                     console.log("Xoa sach");
@@ -138,9 +148,10 @@
                 // Return `null` if the term should not be displayed
                 return null;
             },
-            addNewInvoice () {
+            updateInvoice () {
                 var app = this;
-                axios.post('http://book.com/invoice', {"user_id":app.user_id, "carts": app.carts}).then(response => {
+                var id = app.$route.params.id;
+                axios.patch('http://book.com/invoice/' + id, {"user_id":app.user_id, "carts": app.carts}).then(response => {
                     toastr.success(response.data.message);
                     app.$router.push({path: '/admin/invoice'});
                 }).catch(errors => {

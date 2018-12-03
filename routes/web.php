@@ -20,6 +20,7 @@ Route::resource('book', 'BookController');
 Route::resource('category', 'CategoryController');
 Route::resource('import', 'ImportController');
 Route::resource('invoice', 'InvoiceController');
+Route::put('invoice/{invoice}/status', 'InvoiceController@status');
 Route::resource('role', 'RoleController');
 Route::resource('supplier', 'SupplierController');
 Route::get('dashboard', 'AdminDashboardController@counter');

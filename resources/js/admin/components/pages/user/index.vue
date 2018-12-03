@@ -86,6 +86,7 @@ import * as $ from "jquery";
             // Get product data
             axios.get("http://book.com/user").then(function(json) {
                 app.users = json.data;
+                console.log(json.data);
             }).catch(function(json) {
                 ErrorHelper.error(errors);
             });

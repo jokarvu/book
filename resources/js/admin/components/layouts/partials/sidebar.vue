@@ -78,15 +78,15 @@
                         <span class="title">Quản Lý Danh Mục</span>
                     </router-link>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class='sidebar-link' href="forms.html">
-                    <span class="icon-holder">
-                    <i class="c-light-blue-500 ti-pencil"></i>
-                    </span>
-                        <span class="title">Forms</span>
-                    </a>
+                <li class="nav-item">
+                    <router-link to="/admin/supplier" class='sidebar-link'>
+                        <span class="icon-holder">
+                            <i class="c-light-blue-500 ti-pencil"></i>
+                        </span>
+                        <span class="title">Quản Lý Nhà Cung Cấp</span>
+                    </router-link>
                 </li>
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
                     <a class="sidebar-link" href="ui.html">
                     <span class="icon-holder">
                         <i class="c-pink-500 ti-palette"></i>

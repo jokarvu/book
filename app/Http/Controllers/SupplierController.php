@@ -61,7 +61,7 @@ class SupplierController extends Controller
      */
     public function show($slug)
     {
-        $supplier = Supplier::whereSlug($slug)->firstOrFail();
+        $supplier = Supplier::whereSlug($slug)->with('imports')->firstOrFail();
         if (Auth::user() && Auth::user()->can('view', $supplier)) {
             return Response::json($supplier, 200);
         }

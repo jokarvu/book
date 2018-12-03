@@ -56,7 +56,7 @@
                     axios.get('http://book.com/auth/admin').then(response => {
                         app.$router.push("/admin");
                     }).catch(errors => {
-                        app.$router.push("/");
+                        window.location.replace('http://book.com')
                     })
                 }).catch(errors => {
                   ErrorHelper.error(errors);

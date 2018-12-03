@@ -9,6 +9,7 @@ use Auth;
 use App\Book;
 use App\User;
 use App\Http\Requests\StoreInvoiceRequest;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -24,7 +25,10 @@ class InvoiceController extends Controller
                 $query->withTrashed()->select('id', 'username');
             }])->get();
         } else {
-            $invoices = Invoice::withTrashed()->where('user_id', Auth::user()->id)->get();
+            $invoices = Invoice::withTrashed()->where('user_id', Auth::user()->id)
+                        ->with(['books' => function ($query) {
+                            $query->withTrashed()->select('name');
+                        }])->get();
         }
         return Response::json($invoices, 200);
     }
@@ -38,7 +42,7 @@ class InvoiceController extends Controller
     {
         if (Auth::user() && Auth::user()->can('create', Invoice::class)) {
             $users = User::select('username', 'id', 'address')->get();
-            $books = Book::select('name', 'id', 'quantity', 'slug', 'price')->get();
+            $books = Book::select('name', 'id', 'quantity', 'slug', 'price', 'quantity_left')->get();
             return Response::json(compact(['users', 'books']), 200);
         }
         return Response::json(['message' => 'Bạn không có quyền tạo đơn hàng'], 403);
@@ -70,7 +74,8 @@ class InvoiceController extends Controller
             foreach ($books as $key => $item) {
                 $book = Book::find($item['id']);
                 if ($book->quantity_left < $item['quantity']) {
-                    return Response::json(['message' => 'Trong kho không đủ số lượng'], 422);
+                    $message = 'Trong kho chỉ còn '.$book->quantity_left.' quyển '.$book->name;
+                    return Response::json(['message' => $message], 422);
                 }
             }
             // Tạo đơn hàng
@@ -108,7 +113,15 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice = Invoice::find($id);
+        if (Auth::user() && Auth::user()->can('update', $invoice)) {
+            $invoice = Invoice::withTrashed()->whereId($id)->with('books:book_id,name,slug,book_invoice.quantity,book_invoice.price')->with(['user' => function ($query) {
+                $query->withTrashed()->select(['id', 'username']);
+            }])->firstOrFail();
+            $books = Book::all();
+            return Response::json(compact(['invoice', 'books']), 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền truy cập'], 403);
     }
 
     /**
@@ -120,10 +133,42 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->isAdmin()) {
-            return Response::json(['message' => 'Sửa đơn hàng thành công!'], 200);
+        $invoice = Invoice::find($id);
+        if (Auth::user() && Auth::user()->can('update', $invoice)) {
+            $books = $request->all();
+            if(count($books) == 0) {
+                return Response::json(['message' => 'Bạn phải chọn ít nhất một đầu sách'], 422);
+            }
+            // Chỉnh sửa lại số lượng sách trong kho
+            $old_books_invoice = DB::table('invoices')->select('invoices.id', 'book_invoice.quantity', 'book_invoice.book_id')
+                                    ->join('book_invoice', 'invoices.id', '=', 'book_invoice.invoice_id')
+                                    ->where('invoices.id', '=', $id)
+                                    ->get();
+            if (count($old_books_invoice)) {
+                foreach($old_books_invoice as $key => $value) {
+                    $book = Book::find($value->book_id);
+                    $book->quantity += $value->quantity;
+                    $book->save();
+                }
+                $invoice->books()->detach();
+            }
+            // Kiểm tra xem trong kho còn đủ số lượng sách không
+            return $request->all();
+            foreach ($books as $key => $item) {
+                $book = Book::find($item['id']);
+                if ($book->quantity_left < $item['quantity']) {
+                    return Response::json(['message' => 'Trong kho không đủ số lượng'], 422);
+                }
+            }
+            foreach($books as $key => $item) {
+                $book = Book::find($item['id']);
+                $book->quantity_left -= $item['quantity'];
+                $book->save();
+                $invoice->books()->attach([$item['id'] => ['quantity' => $item['quantity'], 'price' => $book->price]]);
+            }
+            return Response::json(['message' => 'Tạo đơn hàng thành công'], 200);
         }
-        return Response::json(['message' => 'Bạn không có quyền sửa đơn hàng'], 403);
+        return Response::json(['message' => 'Bạn không thể tạo đơn hàng'], 403);
     }
 
     /**
@@ -140,5 +185,16 @@ class InvoiceController extends Controller
             return Response::json(['message' => 'Xóa đơn hàng thành công'], 200);
         }
         return Response::json(['message' => 'Bạn không có quyền xóa đơn hàng'], 403);
+    }
+
+    public function status(Request $request, $id)
+    {
+        $invoice = Invoice::find($id);
+        if(Auth::user() && Auth::user()->can('update', $invoice)) {
+            $invoice->status_id = $request->status_id;
+            $invoice->save();
+            return Response::json(['message' => 'Cập nhật đơn hàng thành công'], 200);
+        }
+        return Response::json(['message' => 'Bạn không có quyền truy cập', 403]);
     }
 }

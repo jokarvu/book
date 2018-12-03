@@ -28,11 +28,16 @@ import CategoryUpdate from './admin/components/pages/category/edit'
 import InvoiceIndex from './admin/components/pages/invoice/index'
 import InvoiceShow from './admin/components/pages/invoice/show'
 import InvoiceCreate from './admin/components/pages/invoice/create'
+import InvoiceUpdate from './admin/components/pages/invoice/edit'
 // Import
 import ImportIndex from './admin/components/pages/imports/index'
 import ImportCreate from './admin/components/pages/imports/create'
 import ImportShow from './admin/components/pages/imports/show'
 
+// Supplier
+import SupplierIndex from './admin/components/pages/supplier/index'
+import SupplierCreate from './admin/components/pages/supplier/create'
+import SupplierShow from './admin/components/pages/supplier/show'
 
 
 // CUSTOMER
@@ -40,6 +45,7 @@ import Customer from './customer/components/layouts/customer'
 import Index from './customer/components/pages/index'
 import Category from './customer/components/pages/category'
 import Cart from './customer/components/pages/cart'
+import Invoice from './customer/components/pages/invoice'
 
 const routes = [
     {
@@ -53,6 +59,7 @@ const routes = [
             })
         }
     },
+    {path: '/render', component: Render},
     {
         path: '/admin',
         component: App,
@@ -62,6 +69,7 @@ const routes = [
             admin: true
         }, 
         children: [
+            {path: 'render', component: Render},
             {path: 'dashboard', component: Dashboard},
             // User pages
             {path: 'user', component: UserIndex},
@@ -82,10 +90,15 @@ const routes = [
             {path: 'invoice', component: InvoiceIndex},
             {path: 'invoice/create', component: InvoiceCreate},
             {path: 'invoice/:id', component: InvoiceShow, name: 'InvoiceShow'},
+            {path: 'invoice/:id/edit', component: InvoiceUpdate, name: 'InvoiceUpdate'},
             // Import page
             {path: 'import', component: ImportIndex},
             {path: 'import/create', component: ImportCreate},
             {path: 'import/:id', component: ImportShow, name: 'ImportShow'},
+            // Supplier page
+            {path: 'supplier', component: SupplierIndex},
+            {path: 'supplier/create', component: SupplierCreate},
+            {path: 'supplier/:slug', component: SupplierShow, name: 'SupplierShow'},
         ]
     },
     {
@@ -95,11 +108,11 @@ const routes = [
         children: [
             {path: 'index.html', component: Index},
             {path: 'cart', component: Cart},
+            {path: 'my-invoice', component: Invoice},
             {path: ':slug', component: Category, name: 'Category'},
         ]
     },
     // Not Found Page
-    {path: '/render', component: Render},
     {path: '*', component: NotFoundPage},
 ]
 
