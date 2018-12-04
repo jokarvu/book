@@ -135,7 +135,8 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::find($id);
         if (Auth::user() && Auth::user()->can('update', $invoice)) {
-            $books = $request->all();
+            $data = $request->all();
+            $books = $data['carts'];
             if(count($books) == 0) {
                 return Response::json(['message' => 'Bạn phải chọn ít nhất một đầu sách'], 422);
             }
@@ -153,11 +154,10 @@ class InvoiceController extends Controller
                 $invoice->books()->detach();
             }
             // Kiểm tra xem trong kho còn đủ số lượng sách không
-            return $request->all();
             foreach ($books as $key => $item) {
                 $book = Book::find($item['id']);
                 if ($book->quantity_left < $item['quantity']) {
-                    return Response::json(['message' => 'Trong kho không đủ số lượng'], 422);
+                    return Response::json(['message' => 'Trong kho không đủ số lượng '.$book->name], 422);
                 }
             }
             foreach($books as $key => $item) {

@@ -38,6 +38,7 @@ import ImportShow from './admin/components/pages/imports/show'
 import SupplierIndex from './admin/components/pages/supplier/index'
 import SupplierCreate from './admin/components/pages/supplier/create'
 import SupplierShow from './admin/components/pages/supplier/show'
+import SupplierUpdate from './admin/components/pages/supplier/edit'
 
 
 // CUSTOMER
@@ -99,6 +100,7 @@ const routes = [
             {path: 'supplier', component: SupplierIndex},
             {path: 'supplier/create', component: SupplierCreate},
             {path: 'supplier/:slug', component: SupplierShow, name: 'SupplierShow'},
+            {path: 'supplier/:slug/edit', component: SupplierUpdate, name: 'SupplierUpdate'},
         ]
     },
     {

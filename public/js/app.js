@@ -72327,7 +72327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$on('updated_value', function (value) {
             console.log(value);
             console.log(app.list_books_id);
-            if (value.length >= app.list_books_id.length) {
+            if (value.length > app.list_books_id.length) {
                 var list = value.filter(function (element) {
                     return !app.list_books_id.includes(element.toString());
                 });
@@ -72336,9 +72336,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return list.includes(book.id.toString());
                 });
                 tmp[0].selected = 1;
-                this.carts.push(tmp[0]);
+                app.carts.push(tmp[0]);
             } else {
-                console.log("Xoa sach");
+                console.log("xoa");
                 app.carts = app.carts.filter(function (book) {
                     return value.includes(book.id.toString());
                 });

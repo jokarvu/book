@@ -100,7 +100,7 @@
             this.$on('updated_value', function (value) {
                 console.log(value);
                 console.log(app.list_books_id);
-                if (value.length >= app.list_books_id.length) {
+                if (value.length > app.list_books_id.length) {
                     var list = value.filter(element => {
                         return !app.list_books_id.includes(element.toString());
                     });
@@ -109,9 +109,9 @@
                         return list.includes(book.id.toString());
                     })
                     tmp[0].selected = 1;
-                    this.carts.push(tmp[0]);
+                    app.carts.push(tmp[0]);
                 } else {
-                    console.log("Xoa sach");
+                    console.log("xoa")
                     app.carts = app.carts.filter(book => {
                         return value.includes(book.id.toString());
                     })
