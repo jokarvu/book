@@ -37,6 +37,9 @@ Route::group(['prefix' => 'auth'], function () {
 Route::get('/login', function () {
     return view('admin');
 });
+Route::get('/register', function () {
+    return view('admin');
+});
 
 Route::get('/admin/{vue?}', function () {
     return view('admin');

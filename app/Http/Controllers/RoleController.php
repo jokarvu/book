@@ -78,8 +78,8 @@ class RoleController extends Controller
         // Lấy thông tin của quyền với name là $slug $slug === 'admin' , $slug == 'customer'
         $role = Role::whereSlug($slug)->firstOrFail();
         if (Auth::user() && Auth::user()->can('view', $role)) {
-            $users = $role->users();
-            return Response::json($users, 200);
+            $users = $role->users()->get();
+            return Response::json(compact(['role', 'users']), 200);
         }
         return Response::json(['message' => 'Bạn không có quyền truy cập'], 403);
     }
@@ -106,9 +106,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $role = Role::whereSlug($slug)->firstOrFail();
+        $role = Role::find($id);
         if (Auth::user() && Auth::user()->can('update', $role)) {
             $data = $request->only('name');
             try {

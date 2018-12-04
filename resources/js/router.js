@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 // Layouts
 import App from './admin/components/layouts/app'
 import NotFoundPage from './admin/components/NotFoundPage'
+import Register from './admin/components/register'
 import Login from './admin/components/login'
 import Render from './admin/components/render'
 
@@ -40,6 +41,12 @@ import SupplierCreate from './admin/components/pages/supplier/create'
 import SupplierShow from './admin/components/pages/supplier/show'
 import SupplierUpdate from './admin/components/pages/supplier/edit'
 
+// Role
+import RoleIndex from './admin/components/pages/role/index'
+import RoleCreate from './admin/components/pages/role/create'
+import RoleUpdate from './admin/components/pages/role/edit'
+import RoleShow from './admin/components/pages/role/show'
+
 
 // CUSTOMER
 import Customer from './customer/components/layouts/customer'
@@ -49,6 +56,17 @@ import Cart from './customer/components/pages/cart'
 import Invoice from './customer/components/pages/invoice'
 
 const routes = [
+    {
+        path: '/register',
+        component: Register,
+        beforeEnter: (to, from, next) => {
+            return axios.get('/auth/check').then(response => {
+                return window.location.replace('http://book.com');
+            }).catch(errors => {
+                return next()
+            })
+        }
+    },
     {
         path: '/login',
         component: Login,
@@ -101,6 +119,11 @@ const routes = [
             {path: 'supplier/create', component: SupplierCreate},
             {path: 'supplier/:slug', component: SupplierShow, name: 'SupplierShow'},
             {path: 'supplier/:slug/edit', component: SupplierUpdate, name: 'SupplierUpdate'},
+            // Role pages
+            {path: 'role', component: RoleIndex},
+            {path: 'role/create', component: RoleCreate},
+            {path: 'role/:slug', component: RoleShow, name: 'RoleShow'},
+            {path: 'role/:slug/edit', component: RoleUpdate, name: 'RoleUpdate'},
         ]
     },
     {

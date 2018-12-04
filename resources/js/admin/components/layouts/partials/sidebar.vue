@@ -86,15 +86,15 @@
                         <span class="title">Quản Lý Nhà Cung Cấp</span>
                     </router-link>
                 </li>
-                <!--<li class="nav-item dropdown">
-                    <a class="sidebar-link" href="ui.html">
-                    <span class="icon-holder">
-                        <i class="c-pink-500 ti-palette"></i>
-                    </span>
-                        <span class="title">UI Elements</span>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
+                    <router-link to="/admin/role" class='sidebar-link'>
+                        <span class="icon-holder">
+                            <i class="c-pink-500 ti-palette"></i>
+                        </span>
+                        <span class="title">Quản Lý Quyền</span>
+                    </router-link>
+                </li>
+                <!--<li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:void(0);">
                         <span class="icon-holder">
                         <i class="c-orange-500 ti-layout-list-thumb"></i>

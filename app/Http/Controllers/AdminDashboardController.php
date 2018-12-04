@@ -24,7 +24,7 @@ class AdminDashboardController extends Controller
             $active_users = User::count();
             $total_invoices = Invoice::withTrashed()->count();
             $pending_invoices = Invoice::withTrashed()->where('status_id', 1)->count();
-            $success_invoices = Invoice::withTrashed()->where('status_id', 4)->count();
+            $success_invoices = Invoice::withTrashed()->where('status_id', 3)->count();
             $total_imports = Import::withTrashed()->count();
             $total_categories = Category::count();
             $today_invoices = Invoice::whereDate('created_at', Carbon::today())->count();
