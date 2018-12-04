@@ -17,6 +17,7 @@
                             <tr>
                                 <th scope="col">#ID</th>
                                 <th scope="col">Nhà cung cấp</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Cập nhật cuối</th>
@@ -27,6 +28,9 @@
                             <tr v-for="item in imports" :key="item.id" :id="'import-'+item.id">
                                 <th scope="row" class="text-center">{{item.id}}</th>
                                 <td>{{item.supplier.name}}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill c-white" :class="item.deleted_at ? 'bgc-red-700' : 'bgc-green-400'">{{item.deleted_at ? 'Đã xóa' : 'Hoạt động'}}</span>
+                                </td>
                                 <td>{{item.note}}</td>
                                 <td class="text-center">{{item.created_at}}</td>
                                 <td class="text-center">{{item.updated_at}}</td>
@@ -37,11 +41,11 @@
                                         Xóa
                                     </button>
                                     <!-- Modal -->
-                                    <div class="modal fade" :id="'invoicemodal-'+item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" :id="'importmodal-'+item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Xóa người dùng</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Xóa hóa đơn nhập</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -50,7 +54,7 @@
                                                     Tất cả hóa đơn của người dùng sẽ bị chuyển vào thùng rác. Bạn có muốn tiếp tục không?
                                                 </div>
                                                     <div class="modal-footer">
-                                                    <button type="button" @click="DeleteInvoice(item.id)" class="btn btn-danger" data-dismiss="modal">Xóa</button>
+                                                    <button type="button" @click="DeleteImport(item.id)" class="btn btn-danger" data-dismiss="modal">Xóa</button>
                                                     <button type="button" class="btn btn-info" data-dismiss="modal">Hủy</button>
                                                 </div>
                                             </div>
@@ -87,7 +91,7 @@ import * as $ from "jquery";
             });
         },
         methods : {
-            DeleteInvoice (id) {
+            DeleteImport (id) {
                 var app = this;
                 axios.delete('http://book.com/import/' + id).then(response => {
                     toastr.success(response.data.message);
